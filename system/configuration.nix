@@ -104,7 +104,7 @@
   programs.steam.enable = true;
   #programs.steam.gamescope.enable = true;
   programs.steam.extraCompatPackages = with pkgs; [
-    proton-ge-custom
+    #proton-ge-custom
   ];
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
