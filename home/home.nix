@@ -15,10 +15,6 @@
     enable = true;
     userName  = "nainteeth";
     userEmail = "knusperpommes@gmail.com";
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-       }/bin/git-credential-libsecret"; 
     };
   };
   
