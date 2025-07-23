@@ -3,9 +3,6 @@
   imports =
     [];
 
-  # This line can be removed after the first successful flake rebuild
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -88,6 +85,9 @@
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "nainteeth";
+
+  # Sudo with no password
+  security.sudo.wheelNeedsPassword = lib.mkForce false;
 
 # Packages installed as a NixOS module system wide. Always prefer to install packages as modules rather than simple systemPackages:
 
