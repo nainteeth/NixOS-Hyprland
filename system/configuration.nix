@@ -100,6 +100,12 @@
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-hyprland
   ];
+  # Install Steam
+  programs.steam.enable = true;
+  programs.steam.gamescope.enable = true;
+  programs.steam.extraCompatPackages = with pkgs; [
+    proton-ge-custom
+  ];
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
 
