@@ -6,13 +6,6 @@
   # This line can be removed after the first successful flake rebuild
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Home Manager
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.nainteeth = import ./home.nix;
-  };
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
