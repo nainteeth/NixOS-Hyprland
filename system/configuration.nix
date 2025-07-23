@@ -72,7 +72,7 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true; # Check if even needed
+  nixpkgs.config.allowUnfree = true;
 
   # Define a user account.
   users.users.nainteeth = {
@@ -127,7 +127,7 @@
     networkmanagerapplet
     hyprpaper
     waypaper
-    discord
+    discord-ptb
   ];
  
  # List services that you want to enable:
