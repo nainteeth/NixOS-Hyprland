@@ -102,7 +102,7 @@
   ];
   # Install Steam
   programs.steam.enable = true;
-  programs.steam.gamescope.enable = true;
+  #programs.steam.gamescope.enable = true;
   programs.steam.extraCompatPackages = with pkgs; [
     proton-ge-custom
   ];
@@ -125,6 +125,7 @@
     networkmanagerapplet
     hyprpaper
     waypaper
+    discord
   ];
  
  # List services that you want to enable:
