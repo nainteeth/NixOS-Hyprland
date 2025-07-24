@@ -159,7 +159,7 @@ in
       ###################
       "$mainMod" = mainMod;
       bind = [
-        "${mainMod}, RETURN, exec, ${$terminal}"
+        "${mainMod}, RETURN, exec, ${terminal}"
         "${$mainMod}, Q, killactive,"
         "${$mainMod}, M, exit,"
         "${$mainMod}, E, exec, ${$fileManager}"
