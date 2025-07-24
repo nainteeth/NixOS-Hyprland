@@ -157,7 +157,7 @@ in
       ###################
       ### KEYBINDINGS ###
       ###################
-      "$mainMod" = $mainMod;
+      "$mainMod" = mainMod;
       bind = [
         "${$mainMod}, RETURN, exec, ${$terminal}"
         "${$mainMod}, Q, killactive,"
