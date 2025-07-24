@@ -271,5 +271,4 @@ in
 
   programs.kitty.enable = true;
   programs.wofi.enable = true;
-  };
 }
