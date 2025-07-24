@@ -9,7 +9,11 @@
     jetbrains-mono
     nerd-fonts.jetbrains-mono 
   ];
-  
+ 
+  imports = [
+    ./hyprland.nix
+    ./hyprpaper.nix 
+  ]; 
   # Git
   programs.git = {
     enable = true;
