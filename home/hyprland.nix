@@ -4,11 +4,11 @@
 
 let
   # Define variables used in your Hyprland config
-  $terminal = "kitty";
-  $fileManager = "dolphin";
-  $menu = "wofi --show drun";
-  $browser = "app.zen_browser.zen";
-  $mainMod = "SUPER";
+  terminal = "kitty";
+  fileManager = "dolphin";
+  menu = "wofi --show drun";
+  browser = "app.zen_browser.zen";
+  mainMod = "SUPER";
 
 in
 {
