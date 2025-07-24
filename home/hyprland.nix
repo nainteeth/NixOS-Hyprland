@@ -167,6 +167,7 @@ in
         "${mainMod}, SPACE, exec, ${menu}"
         "${mainMod}, P, pseudo," # dwindle
         #"${mainMod}, J, togglesplit," 
+        #bind = $mainMod, J, togglesplit, # dwindle
         "${mainMod}, B, exec, ${browser}"
         "${mainMod}, F, fullscreen"
         # Move focus with mainMod + arrow keys
@@ -268,29 +269,7 @@ in
     };
   };
 
-  # Ensure programs used in keybinds/exec-once are installed
-  # (These are examples, you might have them enabled elsewhere or just install them via programs.home.packages)
-  home.packages = with pkgs; [
-    kitty # $terminal
-    dolphin # $fileManager
-    wofi # $menu
-    # app.zen_browser.zen is likely a flatpak or specific package name, confirm if it's available in nixpkgs
-    # If it's a flatpak, you'd manage it through flatpak not nixpkgs directly.
-    waybar
-    nwg-dock-hyprland
-    nm-applet
-    brightnessctl
-    playerctl
-    # vim (if you use it, though kitty -e sudo vim implies you have it)
-  ];
-
   programs.kitty.enable = true;
   programs.wofi.enable = true;
-  programs.waybar.enable = true;
-  programs.dolphin.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 }
