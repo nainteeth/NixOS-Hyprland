@@ -1,0 +1,10 @@
+#! /bin/sh
+## Config bauen und pushen.
+set -eu
+set -x
+
+cd $HOME/nixos-config
+git add .
+git commit -m "$1"
+sudo nixos-rebuild switch --flake "$HOME/nixos-config#laptop"
+git push

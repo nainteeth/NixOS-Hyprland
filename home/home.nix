@@ -15,7 +15,6 @@
     enable = true;
     userName  = "nainteeth";
     userEmail = "knusperpommes@gmail.com";
-    };
   };
   
   # GTK Icons

@@ -1,0 +1,1 @@
+Der "bin" Ordner gehört ins Home Verzeichnis. Nach dem Neuanmelden, sollte es mithilfe von commit-rebuild in der Shell verfügbar sein.
