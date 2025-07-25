@@ -44,12 +44,21 @@
   }; 
   xdg.configfile."qt5ct/qt5ct.conf".source = pkgs.writeText "qt5ct.conf" ''
     [Appearance]
-    color_schema_path=
-    custom_palette=false
-    icon_theme=Adwaita
-    standard_dialogs=default
     style=adwaita-dark
   '';
+  xdg.configFile."gtk-3.0/settings.ini".source = pkgs.writeText "gtk3-settings.ini" ''
+    [Settings]
+    gtk-application-prefer-dark-theme=true
+    gtk-theme-name=Adwaita-dark
+    gtk-icon-theme-name=Adwaita
+  '';
+  xdg.configFile."gtk-4.0/settings.ini".source = pkgs.writeText "gtk4-settings.ini" ''
+    [Settings]
+    gtk-application-prefer-dark-theme=true
+    gtk-theme-name=Adwaita-dark
+    gtk-icon-theme-name=Adwaita
+  '';
+
 
   # GTK
   gtk = {
