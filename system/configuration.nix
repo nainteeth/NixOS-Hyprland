@@ -115,6 +115,7 @@
     nwg-look
     vanilla-dmz
     
+    inputs.zen-browser.packages."${system}".default  
     fastfetch
     pavucontrol
     adwaita-icon-theme
