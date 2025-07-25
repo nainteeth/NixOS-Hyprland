@@ -114,7 +114,8 @@
     # Cursor stuff that doesnt work:
     nwg-look
     vanilla-dmz
-    
+   
+    lutris 
     inputs.zen-browser.packages."${system}".default  
     fastfetch
     pavucontrol
