@@ -8,10 +8,23 @@
     zen-browser.url = "github:MarceColl/zen-browser-flake"; 
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, ... }: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      # Define your system architecture. Common ones are "x86_64-linux" or "aarch64-linux".
+      system = "x86_64-linux";
+
+      # Import Nixpkgs with your system architecture.
+      # 'config.allowUnfree = true;' is often needed for proprietary software.
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in  
+  {
     nixosConfigurations = {
       # Define your host(s) here
       laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
         system = "x86_64-linux"; # Or aarch64-linux, etc.
         modules = [
           # Import your main system configuration
@@ -26,6 +39,10 @@
             home-manager.users.nainteeth = import ./home/home.nix; # Your home-manager config
           }
         ];
+        specialArgs = {
+            inherit inputs pkgs;        # Pass the 'inputs' set and the 'pkgs' set.
+            lib = nixpkgs.lib;          # Explicitly pass the 'lib' (Nixpkgs library) set.
+          };
       };
       # You can add more NixOS configurations for other machines here
       # my-desktop = nixpkgs.lib.nixosSystem { ... };
