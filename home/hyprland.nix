@@ -209,8 +209,8 @@ in
         "${mainMod}, mouse_up, workspace, e-1"
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
-        "${mainMod}, mouse:272, movewindow" # Note: bindm needs the explicit "bindm =" prefix in Nix
-        "${mainMod}, mouse:273, resizewindow"
+        "${mainMod}, mouse:272, mouse, movewindow" # Note: bindm needs the explicit "bindm =" prefix in Nix
+        "${mainMod}, mouse:273, mouse, resizewindow"
 
         # Laptop multimedia keys for volume and LCD brightness
         ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
@@ -262,9 +262,9 @@ in
         "nm-applet"
         "hyprpaper"
         "waypaper --restore"
-        "kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/flake.nix"
-        "kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/system/configuration.nix"
-        "kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/home/home.nix"
+        "[workspace 4 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/flake.nix"
+        "[workspace 5 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/system/configuration.nix"
+        "[workspace 6 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/home/home.nix"
       ];
     };
   };
