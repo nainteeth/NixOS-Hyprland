@@ -10,8 +10,8 @@
     adw-gtk3
     libsForQt5.qt5ct
     qt6ct
-    qt5ct
     adwaita-qt 
+    adwaita-icon-theme
   ];
  
   imports = [
