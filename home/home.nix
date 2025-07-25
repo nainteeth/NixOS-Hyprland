@@ -9,7 +9,9 @@
     nerd-fonts.jetbrains-mono
     adw-gtk3
     libsForQt5.qt5ct
-    qt6ct 
+    qt6ct
+    qt5ct
+    adwaita-qt 
   ];
  
   imports = [
@@ -38,12 +40,16 @@
   # Qt
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
+    platformTheme.name = "qt5ct";
   }; 
+  xdg.configfile."qt5ct/qt5ct.conf".source = pkgs.writeText "qt5ct.conf" ''
+    [Appearance]
+    color_schema_path=
+    custom_palette=false
+    icon_theme=Adwaita
+    standard_dialogs=default
+    style=adwaita-dark
+  '';
 
   # GTK
   gtk = {
