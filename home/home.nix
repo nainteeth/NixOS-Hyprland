@@ -14,7 +14,9 @@
  
   imports = [
     ./hyprland.nix
-    ./hyprpaper.nix 
+    ./hyprpaper.nix
+    ./kitty.nix
+    ./wofi.nix 
   ]; 
 
   # Git
