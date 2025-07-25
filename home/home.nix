@@ -28,7 +28,6 @@
   # XDG Desktop Portal
   xdg.portal = {
     enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-gtk;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
   home.sessionVariables = {
