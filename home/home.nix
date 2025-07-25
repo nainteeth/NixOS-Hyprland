@@ -36,7 +36,7 @@
   # Qt
   qt = {
     enable = true;
-    platformTHeme = "qtct";
+    platformTheme = "qtct";
   }; 
 
   # GTK
