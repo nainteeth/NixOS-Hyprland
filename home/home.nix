@@ -31,7 +31,7 @@
     portalPackage = pkgs.xdg-desktop-portal-gdk;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   }; 
-  xdg.currentDesktop = "Hyprland";
+  XDG_CURRENT_DESKTOP = "Hyprland";
 
   # Qt
   qt = {
