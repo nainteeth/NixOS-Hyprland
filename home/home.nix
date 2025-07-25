@@ -7,27 +7,56 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     jetbrains-mono
-    nerd-fonts.jetbrains-mono 
+    nerd-fonts.jetbrains-mono
+    adw-gtk3
+    qt5ct
+    qt6ct 
   ];
  
   imports = [
     ./hyprland.nix
     ./hyprpaper.nix 
   ]; 
+
   # Git
   programs.git = {
     enable = true;
     userName  = "nainteeth";
     userEmail = "knusperpommes@gmail.com";
   };
-  
-  # GTK Icons
+
+  # XDG Desktop Portal
+  xdg.portal = {
+    enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-gdk;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  }; 
+  xdg.currentDesktop = "Hyprland";
+
+  # Qt
+  qt = {
+    enable = true;
+    platformTHeme = "qtct";
+  }; 
+
+  # GTK
   gtk = {
     enable = true;
+    theme = {
+      name = "Adw-gt3-dark";
+      package pkgs.adw-gtk3;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
     iconTheme = {
       name = "Adwaita";
     };
   };
+
   #Waybar
   programs.waybar = 
     let
