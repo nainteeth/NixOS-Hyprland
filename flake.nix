@@ -25,7 +25,6 @@
       # Define your host(s) here
       laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        system = "x86_64-linux"; # Or aarch64-linux, etc.
         modules = [
           # Import your main system configuration
           ./system/configuration.nix
