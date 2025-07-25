@@ -5,9 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Ensure home-manager uses the same nixpkgs as your system
+    zen-browser.url = "github:MarceColl/zen-browser-flake"; 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, zen-browser, ... }: {
     nixosConfigurations = {
       # Define your host(s) here
       laptop = nixpkgs.lib.nixosSystem {
