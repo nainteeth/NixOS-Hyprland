@@ -115,7 +115,8 @@
     # Cursor stuff that doesnt work:
     nwg-look
     vanilla-dmz
-
+    
+    fastfetch
     pavucontrol
     adwaita-icon-theme
     networkmanagerapplet
