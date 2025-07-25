@@ -30,8 +30,10 @@
     enable = true;
     portalPackage = pkgs.xdg-desktop-portal-gdk;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
   }; 
-  XDG_CURRENT_DESKTOP = "Hyprland";
 
   # Qt
   qt = {
