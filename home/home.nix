@@ -10,7 +10,7 @@
     nerd-fonts.jetbrains-mono
     adw-gtk3
     libsForQt5.qt5ct
-    libsForQt6.qt6ct 
+    qt6ct 
   ];
  
   imports = [
