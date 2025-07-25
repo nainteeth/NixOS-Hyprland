@@ -104,7 +104,6 @@
   ];
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
-
   environment.systemPackages = with pkgs; [
     vim # Change this to a home manager package to customize the configururation and consider switching to nvim
     kitty
