@@ -7,7 +7,7 @@ let
   terminal = "kitty";
   fileManager = "dolphin";
   menu = "wofi --show drun";
-  browser = "app.zen_browser.zen";
+  browser = "zen";
   mainMod = "SUPER";
 
 in
@@ -268,8 +268,6 @@ in
       ];
     };
   };
-
-  programs.kitty.enable = true;
   programs.wofi.enable = true;
 }
 # Mal hoffen dass es klappt
