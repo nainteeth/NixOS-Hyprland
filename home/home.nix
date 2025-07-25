@@ -38,15 +38,19 @@
   # Qt
   qt = {
     enable = true;
-    platformTheme.name = "qtct";
+    platformTheme.name = "gtk";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
   }; 
 
   # GTK
   gtk = {
     enable = true;
     theme = {
-      name = "Adw-gt3-dark";
-      package = pkgs.adw-gtk3;
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-qt;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -56,6 +60,11 @@
     };
     iconTheme = {
       name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+    cursorTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-cursor-theme;
     };
   };
 

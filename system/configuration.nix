@@ -115,7 +115,7 @@
     nwg-look
     vanilla-dmz
    
-    lutris 
+    #lutris 
     inputs.zen-browser.packages."${system}".default  
     fastfetch
     pavucontrol
