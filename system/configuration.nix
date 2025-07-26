@@ -125,6 +125,7 @@
     waypaper
     discord-ptb
     keepassxc
+    signal-desktop
   ];
  
  # List services that you want to enable:
