@@ -126,6 +126,7 @@
     discord-ptb
     keepassxc
     signal-desktop
+    spotify
   ];
  
  # List services that you want to enable:
