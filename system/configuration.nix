@@ -124,6 +124,7 @@
     hyprpaper
     waypaper
     discord-ptb
+    keepassxc
   ];
  
  # List services that you want to enable:
