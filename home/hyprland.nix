@@ -244,7 +244,9 @@ in
         "opacity 0.85 override,class:^(kitty)$"
         "opacity 0.85 override, class:^(org.kde.dolphin)$"
         "opacity 0.85 override, class:^(waypaper)$"
-        # Ignore maximize requests from apps. You'll probably like this.
+        "opacity 0.85 override, class:^(signal)$"
+
+        # Ignore maximize requests from apps.
         "suppressevent maximize, class:.*"
 
         # Fix some dragging issues with XWayland
