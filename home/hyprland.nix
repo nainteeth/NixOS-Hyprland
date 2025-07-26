@@ -231,9 +231,6 @@ in
       ### WINDOWS AND WORKSPACES ###
       ##############################
 
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
-
       # float windowrule
       windowrule = [
         "float,class:^(org.pulseaudio.pavucontrol)$"
