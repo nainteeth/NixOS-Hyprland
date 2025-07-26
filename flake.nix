@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Ensure home-manager uses the same nixpkgs as your system
-    zen-browser.url = "github:MarceColl/zen-browser-flake"; 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake"; 
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
