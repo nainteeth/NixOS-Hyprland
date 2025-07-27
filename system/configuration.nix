@@ -69,6 +69,7 @@
   nixpkgs.config.allowUnfree = true;
 
   fonts.fontDir.enable = true;
+  fonts.fontconfig.enable = true;
 
   # Define a user account.
   users.users.nainteeth = {
@@ -132,7 +133,7 @@
   ];
 
  # Nerd Fonts
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
+  fonts.packages = builtins.filter (pkg: lib.isDerivation pkg) (builtins.attrValues pkgs.nerd-fonts);
 
  # List services that you want to enable:
 
