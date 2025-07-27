@@ -18,14 +18,15 @@
     ./hyprland.nix
     ./hyprpaper.nix
     ./kitty.nix
-    ./wofi.nix 
-  ]; 
-
-  # Git
-  programs.git = {
-    enable = true;
-    userName  = "nainteeth";
-    userEmail = "knusperpommes@gmail.com";
+    ./wofi.nix
+    ./git.nix
+    ./nvim.nix 
+  ];
+ 
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    # If you explicitly want to set the style via environment variable:
+    # QT_STYLE_OVERRIDE = "kvantum";
   };
 
   # XDG Desktop Portal
@@ -42,6 +43,7 @@
     enable = true;
     platformTheme.name = "qt5ct";
   }; 
+
   # --- XDG Config Files ---
   xdg.configFile."qt5ct/qt5ct.conf".source = pkgs.writeText "qt5ct.conf" ''
     [Appearance]
