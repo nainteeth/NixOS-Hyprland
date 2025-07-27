@@ -20,6 +20,7 @@
     ./kitty.nix
     ./wofi.nix
     ./git.nix
+    (./test-nvim-import.nix { inherit pkgs lib config; testArg = "hello"; })
     (./nvim.nix { inherit pkgs lib config; configDir = ./. ; })
   ];
  
