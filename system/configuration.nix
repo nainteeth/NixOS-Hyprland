@@ -68,6 +68,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  fonts.fontDir.enable = true;
+
   # Define a user account.
   users.users.nainteeth = {
     isNormalUser = true;
