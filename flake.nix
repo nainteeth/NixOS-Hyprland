@@ -10,11 +10,7 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      # Define your system architecture. Common ones are "x86_64-linux" or "aarch64-linux".
       system = "x86_64-linux";
-
-      # Import Nixpkgs with your system architecture.
-      # 'config.allowUnfree = true;' is often needed for proprietary software.
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
