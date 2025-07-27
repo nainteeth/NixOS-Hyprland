@@ -31,7 +31,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nainteeth = import ./home/home.nix; # Your home-manager config
+            home-manager.users.nainteeth = { config, pkgs, lib, ... }: import ./home/home.nix { inherit config pkgs lib; }; # Your home-manager config
           }
         ];
         specialArgs = {
