@@ -3,6 +3,6 @@
   programs.git = {
     enable = true;
     userName = "nainteeth";
-    userEmail = "knusperpommes@gmail.com" 
+    userEmail = "knusperpommes@gmail.com"; 
   }; 
 }
