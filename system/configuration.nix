@@ -130,8 +130,9 @@
   ];
 
  # Nerd Fonts
+{
   fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
- 
+} 
  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
