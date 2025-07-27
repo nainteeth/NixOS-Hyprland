@@ -6,7 +6,7 @@ let
   # relative to this home.nix file (assuming a 'lua' subdirectory exists).
   # This keeps your main Nix file clean and allows for better organization
   # of your Neovim Lua configuration into separate, logical files.
-  readLua = file: builtins.readFile (./lua + "/${file}");
+  readLua = file: builtins.readFile (configDir + "/lua/${file}");
 in
 {
   # Enable the Neovim program module in Home Manager.

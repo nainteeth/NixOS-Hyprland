@@ -20,7 +20,7 @@
     ./kitty.nix
     ./wofi.nix
     ./git.nix
-    ./nvim.nix 
+    (./nvim.nix { inherit pkgs lib config; configDir = ./. ; })
   ];
  
   home.sessionVariables = {
