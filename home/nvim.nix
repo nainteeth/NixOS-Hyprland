@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, configDir, ... }:
 
 let
   # This is a helper function to read Lua configuration files.
