@@ -6,7 +6,7 @@ let
   # relative to this home.nix file (assuming a 'lua' subdirectory exists).
   # This keeps your main Nix file clean and allows for better organization
   # of your Neovim Lua configuration into separate, logical files.
-  readLua = file: builtins.readFile (configDir + "/lua/${file}");
+  readLua = file: builtins.readFile (./lua + "/${file}");
 in
 {
   # Enable the Neovim program module in Home Manager.
@@ -62,7 +62,9 @@ in
       cmp-cmdline         # Completion source for nvim-cmp for command-line mode.
       cmp-vsnip           # Completion source for nvim-cmp that integrates with `vim-vsnip`.
       luasnip             # A modern snippet engine written in Lua. Used by nvim-cmp.
+      cmp_luasnip         # Completion source for nvim-cmp that integrates with `luasnip`.
       vim-vsnip           # Default snippets for the `luasnip` engine.
+      lspkind-nvim        # VSCode-like pictograms for neovim lsp completion items
 
       # --------------------------------------------------------------------------
       # Utility and Navigation
@@ -137,7 +139,7 @@ in
     # formatters, and linters. These are external executables that Neovim's
     # LSP client (`nvim-lspconfig`) will interact with.
     extraPackages = with pkgs; [
-      nil_ls                          # Nix Language Server for Nix files.
+      nil                          # Nix Language Server for Nix files.
       lua-language-server             # Language server for Lua.
       nodePackages.typescript-language-server # LSP for TypeScript/JavaScript.
       nodePackages.prettier           # A popular code formatter for web languages.

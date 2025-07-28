@@ -20,13 +20,12 @@
     ./kitty.nix
     ./wofi.nix
     ./git.nix
-    (./nvim.nix { inherit pkgs lib config; configDir = ./. ; })
+    ./nvim.nix
   ];
  
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
-    # If you explicitly want to set the style via environment variable:
-    # QT_STYLE_OVERRIDE = "kvantum";
+    XDG_CURRENT_DESKTOP = "Hyprland";
   };
 
   # XDG Desktop Portal
@@ -34,9 +33,6 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
-  home.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "Hyprland";
-  }; 
 
   # Qt
   qt = {
