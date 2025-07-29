@@ -83,25 +83,25 @@
   #services.displayManager.autoLogin.enable = true;
   #services.displayManager.autoLogin.user = "nainteeth";
 
-services.displayManager.sddm = {
-  enable = true;
-  wayland.enable = true;  # Essential for Hyprland
-  package = pkgs.kdePackages.sddm;
-  theme = "sddm-astronaut-theme";
-  
-  settings = {
-    Theme = {
-      Current = "sddm-astronaut-theme";
-      CursorTheme = "Adwaita";
-      CursorSize = 24;
-      #Background = "/etc/nixos/wallpapers/ "
-    };
-    Wayland = {
-      SessionDir = "${pkgs.hyprland}/share/wayland-sessions";
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;  # Essential for Hyprland
+    package = pkgs.kdePackages.sddm;
+    theme = "sddm-astronaut-theme";
+    
+    settings = {
+      Theme = {
+        Current = "sddm-astronaut-theme";
+        CursorTheme = "Adwaita";
+        CursorSize = 24;
+        #Background = "/etc/nixos/wallpapers/ "
+      };
+      Wayland = {
+        SessionDir = "${pkgs.hyprland}/share/wayland-sessions";
+      };
     };
   };
-};
-
+  
 # Make sure Hyprland session is available
 services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Sudo with no password
