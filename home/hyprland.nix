@@ -33,6 +33,9 @@ in
         "HYPRCURSOR_SIZE,24"
         "HYPRCURSOR_THEME,Adwaita"
         "XCURSOR_THEME,Adwaita"
+        "GTK_THEME,Adwaita:dark"
+        "QT_QPA_PLATFORM,wayland:xcb"
+        "GDK_BACKEND,wayland,x11"
       ];
 
       ###################
@@ -255,6 +258,10 @@ in
       #################
 
       exec-once = [
+        #Theming
+        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+      "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+
         "waybar"
         "nwg-dock-hyprland -c \"wofi --show drun\" -d -i 32 -lp \"start\" -w 5"
         "nm-applet"

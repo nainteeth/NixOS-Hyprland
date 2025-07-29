@@ -83,16 +83,27 @@
   #services.displayManager.autoLogin.enable = true;
   #services.displayManager.autoLogin.user = "nainteeth";
 
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "sddm-astronaut";
-      settings = {
-        #Theme = {
-          #Background = "/path/to/your/awesome-wallpaper.png";
-        #};
-      };
+services.displayManager.sddm = {
+  enable = true;
+  wayland.enable = true;  # Essential for Hyprland
+  package = pkgs.kdePackages.sddm;
+  theme = "sddm-astronaut-theme";
+  
+  settings = {
+    Theme = {
+      Current = "sddm-astronaut-theme";
+      CursorTheme = "Adwaita";
+      CursorSize = 24;
+      #Background = "/etc/nixos/wallpapers/ "
+    };
+    Wayland = {
+      SessionDir = "${pkgs.hyprland}/share/wayland-sessions";
+    };
   };
+};
 
+# Make sure Hyprland session is available
+services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Sudo with no password
   security.sudo.wheelNeedsPassword = lib.mkForce false;
 
@@ -102,10 +113,14 @@
   # Install flatpak.
   services.flatpak.enable = true;
   # Install XDG Desktop Portal. 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-hyprland
-  ];
+  xdg.portal = { 
+    enable = true;
+    wlr.enable = true
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
   environment.systemPackages = with pkgs; [
@@ -113,6 +128,12 @@
     wofi # change to home manager
     kdePackages.dolphin
     unzip
+    wl-clipboard
+    xdg-utils
+    inter
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     nwg-dock-hyprland # figure out how to use custom css
     # Cursor stuff i think
     nwg-look

@@ -10,7 +10,9 @@
     adw-gtk3
     libsForQt5.qt5ct
     qt6ct
-    adwaita-qt 
+    qt5.qtwayland
+    qt6.qtwayland
+    adwaita-qt
     adwaita-icon-theme
     hyprcursor
   ];
@@ -25,58 +27,58 @@
   ];
  
   home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
+    GTK_THEME = "Adwaita:dark";
+    XCURSOR_THEME = "Adwaita";
+    XCURSOR_SIZE = "24";
+    # Force Wayland for GTK apps
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    MOZ_ENABLE_WAYLAND = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
   };
+
+  dconf.settings = {
+    enable = true;
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Adwaita-dark";
+      icon-theme = "Adwaita";
+      cursor-theme = "Adwaita";
+      color-scheme = "prefer-dark";
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      theme = "Adwaita-dark";
+    };
 
   # XDG Desktop Portal
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    configPackages = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
   # Qt
   qt = {
     enable = true;
-    platformTheme.name = "qt5ct";
+    platformTheme.name = "gtk3";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
   }; 
-
-  # --- XDG Config Files ---
-  xdg.configFile."qt5ct/qt5ct.conf".source = pkgs.writeText "qt5ct.conf" ''
-    [Appearance]
-    style=adwaita-dark
-  '';
-
-  xdg.configFile."gtk-3.0/settings.ini".source = pkgs.writeText "gtk3-settings.ini" ''
-    [Settings]
-    gtk-application-prefer-dark-theme=true
-    gtk-theme-name=Adwaita-dark
-    gtk-icon-theme-name=Adwaita
-  '';
-
-  xdg.configFile."gtk-4.0/settings.ini".source = pkgs.writeText "gtk4-settings.ini" ''
-    [Settings]
-    gtk-application-prefer-dark-theme=true
-    gtk-theme-name=Adwaita-dark
-    gtk-icon-theme-name=Adwaita
-  '';
 
 # GTK
   gtk = {
     enable = true;
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.adwaita-qt;
+      package = pkgs.gnome-themes-extra;
     };
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-cursor-theme-name = "Adwaita";
-      gtk-cursor-theme-size = 24;
+      gtk-application-prefer-dark-theme = 1;
     };
     gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-cursor-theme-name = "Adwaita";
-      gtk-cursor-theme-size = 24;
+      gtk-application-prefer-dark-theme = 1;
     };
     iconTheme = {
       name = "Adwaita";
@@ -85,7 +87,6 @@
     cursorTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
-      size = 24;
     };
   };
 
