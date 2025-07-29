@@ -88,13 +88,13 @@
     wayland.enable = true;  # Essential for Hyprland
     package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
-      sddm-astronaut
+      sddm-chili
     ];
-    theme = "sddm-astronaut-theme";
+    theme = "chili";
     
     settings = {
       Theme = {
-        Current = "sddm-astronaut-theme";
+        Current = "chili";
         CursorTheme = "Adwaita";
         CursorSize = 24;
         #Background = "/etc/nixos/wallpapers/ "
