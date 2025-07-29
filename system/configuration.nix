@@ -132,7 +132,7 @@
     xdg-utils
     inter
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     nwg-dock-hyprland # figure out how to use custom css
     # Cursor stuff i think
