@@ -3,7 +3,7 @@
 ## Automatically detects which system (laptop or gaming-pc) based on hostname
 
 set -eu  # Exit on error and undefined variables
-set -x   # Show commands as they run
+#set -x   # Show commands as they run
 
 # Go to the NixOS configuration directory
 cd $HOME/nixos-config

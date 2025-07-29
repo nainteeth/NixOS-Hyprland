@@ -31,8 +31,8 @@ in
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
-        "HYPRCURSOR_THEME,rose-pine"
-        "XCURSOR_THEME,vanilla-dmz"
+        "HYPRCURSOR_THEME,Adwaita"
+        "XCURSOR_THEME,Adwaita"
       ];
 
       ###################
@@ -257,14 +257,10 @@ in
       exec-once = [
         "waybar"
         "nwg-dock-hyprland -c \"wofi --show drun\" -d -i 32 -lp \"start\" -w 5"
-        "hyprctl setcursor rose-pine 24"
         "flatpak run org.signal.Signal"
         "nm-applet"
         "hyprpaper"
         "waypaper --restore"
-        "[workspace 4 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/flake.nix"
-        "[workspace 5 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/system/configuration.nix"
-        "[workspace 6 silent] kitty -e sudo vim ${config.home.homeDirectory}/nixos-config/home/home.nix"
       ];
     };
   };

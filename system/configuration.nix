@@ -106,15 +106,13 @@
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
   environment.systemPackages = with pkgs; [
-    vim # Change this to a home manager package to customize the configururation and consider switching to nvim
     kitty
     wofi # change to home manager
     kdePackages.dolphin
     unzip
     nwg-dock-hyprland # figure out how to use custom css
-    # Cursor stuff that doesnt work:
+    # Cursor stuff i think
     nwg-look
-    vanilla-dmz
    
     #lutris 
     inputs.zen-browser.packages."${system}".default  

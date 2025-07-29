@@ -12,6 +12,7 @@
     qt6ct
     adwaita-qt 
     adwaita-icon-theme
+    hyprcursor
   ];
  
   imports = [
@@ -60,7 +61,7 @@
     gtk-icon-theme-name=Adwaita
   '';
 
-  # GTK
+# GTK
   gtk = {
     enable = true;
     theme = {
@@ -69,9 +70,13 @@
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
+      gtk-cursor-theme-name = "Adwaita";
+      gtk-cursor-theme-size = 24;
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
+      gtk-cursor-theme-name = "Adwaita";
+      gtk-cursor-theme-size = 24;
     };
     iconTheme = {
       name = "Adwaita";
@@ -80,6 +85,7 @@
     cursorTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
+      size = 24;
     };
   };
 
