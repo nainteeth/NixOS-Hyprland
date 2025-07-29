@@ -87,7 +87,6 @@
   security.sudo.wheelNeedsPassword = lib.mkForce false;
 
 # Packages installed as a NixOS module system wide. Always prefer to install packages as modules rather than simple systemPackages:
-
   # Install firefox.
   programs.firefox.enable = true;
   # Install flatpak.
@@ -96,12 +95,6 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-hyprland
-  ];
-  # Install Steam
-  programs.steam.enable = true;
-  #programs.steam.gamescope.enable = true;
-  programs.steam.extraCompatPackages = with pkgs; [
-    #proton-ge-custom
   ];
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:

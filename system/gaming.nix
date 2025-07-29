@@ -29,5 +29,6 @@
     mangohud
     gamescope
     lutris
+    pkgs.osu-lazer-bin
   ];
 }
