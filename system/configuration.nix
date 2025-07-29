@@ -88,9 +88,10 @@
     enableWayland = true;
     theme = "sddm-astronaut";
       settings = {
-      #Theme = {
-        #Background = "/path/to/your/awesome-wallpaper.png";
-      #};
+        #Theme = {
+          #Background = "/path/to/your/awesome-wallpaper.png";
+        #};
+      };
   };
 
   # Sudo with no password
