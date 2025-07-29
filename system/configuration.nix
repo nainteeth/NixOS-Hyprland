@@ -86,15 +86,15 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;  # Essential for Hyprland
-    package = pkgs.sddm;
+    package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
-      sddm-chili-theme
+      sddm-sugar-dark
     ];
-    theme = "chili";
+    theme = "sugar-dark";
     
     settings = {
       Theme = {
-        Current = "chili";
+        Current = "sugar-dark";
         CursorTheme = "Adwaita";
         CursorSize = 24;
         #Background = "/etc/nixos/wallpapers/ "
