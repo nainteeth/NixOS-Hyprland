@@ -50,6 +50,7 @@
     "org/gnome/desktop/wm/preferences" = {
       theme = "Adwaita-dark";
     };
+  };
 
   # XDG Desktop Portal
   xdg.portal = {
