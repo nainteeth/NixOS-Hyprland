@@ -102,8 +102,8 @@
     };
   };
   
-# Make sure Hyprland session is available
-services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
+  # Make sure Hyprland session is available
+  services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Sudo with no password
   security.sudo.wheelNeedsPassword = lib.mkForce false;
 

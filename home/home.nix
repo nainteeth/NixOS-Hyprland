@@ -38,9 +38,9 @@
     MOZ_ENABLE_WAYLAND = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
   };
-
-  dconf.settings = {
-    enable = true;
+  
+  programs.dconf.enable = true;
+  dconf.settings = { 
     "org/gnome/desktop/interface" = {
       gtk-theme = "Adwaita-dark";
       icon-theme = "Adwaita";
