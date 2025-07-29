@@ -85,7 +85,6 @@
 
   services.displayManager.sddm = {
     enable = true;
-    enableWayland = true;
     theme = "sddm-astronaut";
       settings = {
         #Theme = {
