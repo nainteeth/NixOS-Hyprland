@@ -86,7 +86,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;  # Essential for Hyprland
-    package = pkgs.kdePackages.sddm;
+    package = pkgs.sddm;
     extraPackages = with pkgs; [
       sddm-chili-theme
     ];
