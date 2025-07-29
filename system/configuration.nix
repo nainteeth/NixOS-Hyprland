@@ -88,7 +88,7 @@
     wayland.enable = true;  # Essential for Hyprland
     package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
-      sddm-chili
+      sddm-chili-theme
     ];
     theme = "chili";
     
