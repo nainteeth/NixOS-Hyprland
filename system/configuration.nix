@@ -87,6 +87,9 @@
     enable = true;
     wayland.enable = true;  # Essential for Hyprland
     package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [
+      sddm-astronaut
+    ];
     theme = "sddm-astronaut-theme";
     
     settings = {
@@ -150,7 +153,6 @@
     keepassxc
     signal-desktop
     spotify
-    sddm-astronaut
   ];
 
  # Nerd Fonts
