@@ -80,8 +80,18 @@
   };
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "nainteeth";
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "nainteeth";
+
+  services.displayManager.sddm = {
+    enable = true;
+    enableWayland = true;
+    theme = "sddm-astronaut";
+      settings = {
+      #Theme = {
+        #Background = "/path/to/your/awesome-wallpaper.png";
+      #};
+  };
 
   # Sudo with no password
   security.sudo.wheelNeedsPassword = lib.mkForce false;
@@ -119,6 +129,7 @@
     keepassxc
     signal-desktop
     spotify
+    sddm-astronaut
   ];
 
  # Nerd Fonts
