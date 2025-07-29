@@ -16,7 +16,6 @@
       set hidden            " Allow switching buffers without saving unsaved changes.
                             " Changes will be kept in memory until explicitly saved or discarded.
       set noerrorbells      " Disable the annoying bell sound on errors.
-      set nowrap            " Don't wrap lines; lines will extend horizontally.
       set mouse=a           " Enable mouse support in all modes (normal, visual, insert, command-line).
       set cmdheight=1       " Set the command line height to 1 line.
       set updatetime=300    " Time in milliseconds to wait before writing swap file and triggering

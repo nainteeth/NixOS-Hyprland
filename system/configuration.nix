@@ -10,8 +10,6 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-
   # Enable networking
   networking.networkmanager.enable = true;
   # Enable Wifi

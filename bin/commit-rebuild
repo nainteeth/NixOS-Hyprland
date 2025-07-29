@@ -1,10 +1,61 @@
-#! /bin/sh
-## Config bauen und pushen.
-set -eu
-set -x
+#!/run/current-system/sw/bin/bash 
+## Script to commit changes and rebuild NixOS configuration
+## Automatically detects which system (laptop or gaming-pc) based on hostname
 
+set -eu  # Exit on error and undefined variables
+set -x   # Show commands as they run
+
+# Go to the NixOS configuration directory
 cd $HOME/nixos-config
+
+echo "=== Starting NixOS rebuild process ==="
+
+# Get the current hostname of this computer
+CURRENT_HOSTNAME=$(hostname)
+echo "Current hostname: $CURRENT_HOSTNAME"
+
+# Figure out which flake configuration to use based on hostname
+if [ "$CURRENT_HOSTNAME" = "laptop" ]; then
+    FLAKE_CONFIG="laptop"
+    echo "✓ Detected laptop system"
+elif [ "$CURRENT_HOSTNAME" = "gaming-pc" ]; then
+    FLAKE_CONFIG="gaming-pc"
+    echo "✓ Detected gaming PC system"
+else
+    # Hostname doesn't match our expected names, ask the user
+    echo "⚠ Warning: Hostname '$CURRENT_HOSTNAME' not recognized"
+    echo "Available configurations:"
+    echo "  1) laptop"
+    echo "  2) gaming-pc"
+    echo ""
+    read -p "Which system is this? Enter 'laptop' or 'gaming-pc': " user_choice
+    
+    if [ "$user_choice" = "laptop" ] || [ "$user_choice" = "1" ]; then
+        FLAKE_CONFIG="laptop"
+    elif [ "$user_choice" = "gaming-pc" ] || [ "$user_choice" = "2" ]; then
+        FLAKE_CONFIG="gaming-pc"
+    else
+        echo "❌ Invalid choice. Please run the script again and choose 'laptop' or 'gaming-pc'"
+        exit 1
+    fi
+fi
+
+echo "Using configuration: $FLAKE_CONFIG"
+
+# Step 1: Add all changes to git
+echo "=== Step 1: Adding changes to git ==="
 git add .
+
+# Step 2: Commit changes with the message provided as first argument
+echo "=== Step 2: Committing changes ==="
 git commit -m "$1"
-sudo nixos-rebuild switch --flake "$HOME/nixos-config#laptop"
+
+# Step 3: Build and switch to the new configuration
+echo "=== Step 3: Building NixOS configuration ==="
+sudo nixos-rebuild switch --flake "$HOME/nixos-config#$FLAKE_CONFIG"
+
+# Step 4: Push changes to remote repository
+echo "=== Step 4: Pushing to git repository ==="
 git push
+
+echo "✅ Successfully completed rebuild for $FLAKE_CONFIG!"
