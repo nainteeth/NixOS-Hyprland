@@ -39,7 +39,6 @@
     XDG_CURRENT_DESKTOP = "Hyprland";
   };
   
-  programs.dconf.enable = true;
   dconf.settings = { 
     "org/gnome/desktop/interface" = {
       gtk-theme = "Adwaita-dark";
