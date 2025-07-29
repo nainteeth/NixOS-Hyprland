@@ -115,7 +115,7 @@ services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Install XDG Desktop Portal. 
   xdg.portal = { 
     enable = true;
-    wlr.enable = true
+    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
