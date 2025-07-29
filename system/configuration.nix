@@ -85,13 +85,9 @@
 
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;  # Essential for Hyprland
+    wayland.enable = true;
     package = pkgs.kdePackages.sddm;
-    extraPackages = with pkgs; [
-      sddm-sugar-dark
-    ];
-    theme = "sugar-dark";
-    
+    theme = "sugar-candy";
     settings = {
       Theme = {
         Current = "sugar-dark";
@@ -153,6 +149,7 @@
     keepassxc
     signal-desktop
     spotify
+    inputs.sddm-sugar-candy-nix.packages.${pkgs.system}.default
   ];
 
  # Nerd Fonts
