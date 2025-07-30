@@ -14,7 +14,6 @@
     ./qt.nix
     ./gtk.nix
     ./waybar.nix
-    ./hyprpaper.nix
     ./kitty.nix
     ./wofi/wofi.nix
     ./git.nix
