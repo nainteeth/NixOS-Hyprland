@@ -239,6 +239,9 @@ in
         "float,class:^(org.pulseaudio.pavucontrol)$"
         "float,class:^(nm-connection-editor)$"
 
+        # wofi shadow bugfix
+        "noshadow,class:^(wofi)$"
+
         # opacity windowrule
         "opacity 0.85 override,class:^(kitty)$"
         "opacity 0.85 override, class:^(thunar)$"
