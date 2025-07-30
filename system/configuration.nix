@@ -93,7 +93,7 @@
         Current = "catppuccin-mocha";
         CursorTheme = "Adwaita";
         CursorSize = 24;
-        background = "/etc/nixos/wallpapers/ "
+        background = "/etc/nixos/wallpapers/";
       };
       Wayland = {
         SessionDir = "${pkgs.hyprland}/share/wayland-sessions";
