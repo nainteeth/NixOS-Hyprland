@@ -87,10 +87,10 @@
     enable = true;
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
-    theme = "sugar-candy";
+    theme = "sddm-sugar-candy-nix";
     settings = {
       Theme = {
-        Current = "sugar-dark";
+        Current = "sddm-sugar-candy-nix";
         CursorTheme = "Adwaita";
         CursorSize = 24;
         #Background = "/etc/nixos/wallpapers/ "
