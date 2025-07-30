@@ -24,7 +24,7 @@
                             " when LSP diagnostics (errors/warnings) or Git signs appear/disappear.
       set termguicolors     " Enable true color support for terminal UIs (requires a terminal
                             " emulator that supports 24-bit true colors, e.g., Alacritty, Kitty).
-      # Keine Ahnung wie das klappt aber das ist für nix lsp support oder so
+
        " LSP keybindings
       nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
       nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
