@@ -93,7 +93,7 @@
         Current = "catppuccin-mocha";
         CursorTheme = "Adwaita";
         CursorSize = 24;
-        background = "/etc/nixos/wallpapers/";
+        background = "/etc/nixos/wallpapers/blue-wave.png";
       };
       Wayland = {
         SessionDir = "${pkgs.hyprland}/share/wayland-sessions";
@@ -126,7 +126,7 @@
     kitty
     wofi # change to home manager
     kdePackages.dolphin
-    kio-admin
+    kdePackages.kio-admin
     unzip
     wl-clipboard
     xdg-utils
