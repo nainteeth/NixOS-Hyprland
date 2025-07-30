@@ -238,11 +238,10 @@ in
       windowrule = [
         "float,class:^(org.pulseaudio.pavucontrol)$"
         "float,class:^(nm-connection-editor)$"
-        #windowrule = float,class:^(waypaper)§
 
         # opacity windowrule
         "opacity 0.85 override,class:^(kitty)$"
-        "opacity 0.85 override, class:^(org.kde.dolphin)$"
+        "opacity 0.85 override, class:^(thunar)$"
         "opacity 0.85 override, class:^(waypaper)$"
         "opacity 0.9 override, class:^(signal)$"
 
@@ -271,6 +270,5 @@ in
       ];
     };
   };
-  programs.wofi.enable = true;
 }
 # Mal hoffen dass es klappt
