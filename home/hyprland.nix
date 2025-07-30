@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 let
   # Define variables used in your Hyprland config
   terminal = "kitty";
