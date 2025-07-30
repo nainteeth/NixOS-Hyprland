@@ -27,7 +27,11 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
-
+      nvim-lspconfig
+      nvim-cmp
+      cmp-nvim-lsp
+      nvim-tree-lua
+      nvim-treesitter.withAllGrammars
     ];
 
     extraPackages = with pkgs; [

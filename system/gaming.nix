@@ -5,10 +5,9 @@
   programs.gamemode.enable = true;
   
   # AMD GPU support for RX 6700XT
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       amdvlk
       rocm-opencl-icd
@@ -30,5 +29,7 @@
     gamescope
     lutris
     pkgs.osu-lazer-bin
+    vulkan-tools
+    vulkan-validation-layers
   ];
 }
