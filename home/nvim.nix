@@ -35,7 +35,18 @@
     ];
 
     extraPackages = with pkgs; [
-
+      nil
     ];
+
+    # Ich hab keine Ahnung wie das funktioniert aber das soll für lsp sein damit das mit nix sprache funktioniert.
+    " LSP keybindings
+      nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
+      nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
+
+      lua << EOF
+      -- Setup Nix LSP
+      require('lspconfig').nil_ls.setup{}
+      EOF
+    '';
   };
 }
