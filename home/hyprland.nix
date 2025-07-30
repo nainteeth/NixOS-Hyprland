@@ -240,7 +240,7 @@ in
         "float,class:^(nm-connection-editor)$"
 
         # wofi shadow bugfix
-        "noshadow,class:^(wofi)$"
+        "noshadow,class:^(Wofi)$"
 
         # opacity windowrule
         "opacity 0.85 override,class:^(kitty)$"
