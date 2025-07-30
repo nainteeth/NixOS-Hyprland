@@ -18,5 +18,6 @@
     ./wofi/wofi.nix
     ./git.nix
     ./nvim.nix
+    ./screenshot.nix
   ];
 }

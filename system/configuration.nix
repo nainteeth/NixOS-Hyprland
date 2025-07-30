@@ -1,7 +1,8 @@
 { config, lib, pkgs, inputs,  ... }:
 {
-  imports =
-    [];
+  imports = [
+    ./screenshot.nix
+  ];
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
   };
@@ -128,7 +129,6 @@
     xfce.thunar-archive-plugin
     kdePackages.kio-admin
     unzip
-    wl-clipboard
     xdg-utils
     inter
     noto-fonts
