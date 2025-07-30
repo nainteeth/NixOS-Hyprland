@@ -21,7 +21,7 @@
     ./hyprland.nix
     ./hyprpaper.nix
     ./kitty.nix
-    ./wofi.nix
+    ./wofi/wofi.nix
     ./git.nix
     ./nvim.nix
   ];
