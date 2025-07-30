@@ -1,7 +1,7 @@
 /* General window and input styling */
 window {
     background-color: #2e3440; /* Dark background, Nord theme like */
-    border: 2px solid #81a1c1; /* A nice blue border */
+    border: none;
     border-radius: 12px; /* Significantly rounded corners for the main window */
     font-family: "JetBrains Mono Nerd Font", monospace; /* Example font */
     font-size: 14px;
