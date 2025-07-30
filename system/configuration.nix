@@ -125,7 +125,9 @@
   environment.systemPackages = with pkgs; [
     kitty
     wofi # change to home manager
-    kdePackages.dolphin
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
     kdePackages.kio-admin
     unzip
     wl-clipboard
@@ -153,13 +155,18 @@
     catppuccin-sddm
   ];
 
- # Nerd Fonts
+  # Nerd Fonts
   fonts.packages = builtins.filter (pkg: lib.isDerivation pkg) (builtins.attrValues pkgs.nerd-fonts);
 
- # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Stuff required for file manager:
+  services.gvfs.enable = true;           # Auto-mounting, network drives
+  services.udisks2.enable = true;        # Disk management
+  services.devmon.enable = true;         # Device monitoring
+  services.tumbler.enable = true;        # Thumbnails
+  # For admin actions
+  security.polkit.enable = true;
+  # Better archive support
+  programs.file-roller.enable = true;    # Archive manager
 
   system.stateVersion = "25.05";
 }
