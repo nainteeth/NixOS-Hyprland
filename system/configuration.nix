@@ -87,10 +87,10 @@
     enable = true;
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
-    theme = "sddm-sugar-candy-nix";
+    theme = "catppuccin-mocha";
     settings = {
       Theme = {
-        Current = "sddm-sugar-candy-nix";
+        Current = "catppuccin-mocha";
         CursorTheme = "Adwaita";
         CursorSize = 24;
         #Background = "/etc/nixos/wallpapers/ "
@@ -149,7 +149,7 @@
     keepassxc
     signal-desktop
     spotify
-    inputs.sddm-sugar-candy-nix.packages.${pkgs.system}.default
+    catppuccin-sddm
   ];
 
  # Nerd Fonts
