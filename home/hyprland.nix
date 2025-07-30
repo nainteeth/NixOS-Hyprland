@@ -5,7 +5,7 @@
 let
   # Define variables used in your Hyprland config
   terminal = "kitty";
-  fileManager = "dolphin";
+  fileManager = "thunar";
   menu = "wofi --show drun";
   browser = "zen";
   mainMod = "SUPER";
