@@ -6,6 +6,7 @@ window {
     font-family: "JetBrains Mono Nerd Font", monospace; /* Example font */
     font-size: 14px;
     color: #eceff4; /* Light text color */
+    box-shadow: none;
 }
 
 /* Search input box */
