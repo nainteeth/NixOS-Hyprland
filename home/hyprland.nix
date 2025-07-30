@@ -1,7 +1,4 @@
-# home/hyprland/default.nix
-# This file goes into home/hyprland/default.nix
 { config, pkgs, ... }:
-
 let
   # Define variables used in your Hyprland config
   terminal = "kitty";
@@ -261,10 +258,6 @@ in
       #################
 
       exec-once = [
-        #Theming
-        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
-      "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
-
         "waybar"
         "nwg-dock-hyprland -c \"wofi --show drun\" -d -i 32 -lp \"start\" -w 5"
         "nm-applet"

@@ -11,5 +11,6 @@
     adwaita-qt
     adwaita-icon-theme
     hyprcursor
+    hyprpaper
   ];
 }

@@ -123,8 +123,6 @@
 
 # Packages installed as systemPackages that dont require declarative configuration management using home-manager:
   environment.systemPackages = with pkgs; [
-    kitty
-    wofi # change to home manager
     xfce.thunar
     xfce.thunar-volman
     xfce.thunar-archive-plugin
