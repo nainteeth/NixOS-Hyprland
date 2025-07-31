@@ -2,14 +2,14 @@
 
 {
   # Create screenshot directory
-  home.file."Pictures/Screenshots/.keep".text = "";
+  home.file."Bilder/Screenshots/.keep".text = "";
   
   # Install screenshot script
   home.file."bin/screenshot-menu" = {
     text = ''
       #!/usr/bin/env bash
       
-      SCREENSHOT_DIR="$HOME/nainteeth/Bilder/Screenshots"
+      SCREENSHOT_DIR="$HOME/Bilder/Screenshots"
       
       # Menu options with emojis
       options="🖥️ Full Screen\n📱 Select Area\n🪟 Active Window\n✏️ Edit Area\n📋 Copy to Clipboard\n🎨 Annotate with Satty"
