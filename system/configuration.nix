@@ -107,9 +107,7 @@
   # Sudo with no password
   security.sudo.wheelNeedsPassword = lib.mkForce false;
 
-# Packages installed as a NixOS module system wide. Always prefer to install packages as modules rather than simple systemPackages:
-  # Install firefox.
-  programs.firefox.enable = true;
+# Packages installed as a NixOS module system wide:
   # Install flatpak.
   services.flatpak.enable = true;
   # Install XDG Desktop Portal. 

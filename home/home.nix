@@ -19,5 +19,6 @@
     ./git.nix
     ./nvim.nix
     ./screenshot.nix
+    ./firefox.nix
   ];
 }
