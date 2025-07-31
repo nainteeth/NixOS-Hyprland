@@ -6,7 +6,7 @@
   fonts.fontconfig.enable = true;
  
   imports = [
-    ./hyprland.nix
+    ./hyprland/hyprland.nix
     ./packages.nix
     ./session-variables.nix
     ./dconf-settings.nix
