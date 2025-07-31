@@ -10,9 +10,12 @@
     };
     
     nur.url = "github:nix-community/NUR";
+    
+    # Add nix-flatpak for declarative Flatpak management
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -33,6 +36,8 @@
               users.nainteeth = import ./home/home.nix;
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
+              # Pass inputs to home-manager for nix-flatpak
+              extraSpecialArgs = { inherit inputs nix-flatpak; };
             };
             # Set hostname for each system
             networking.hostName = hostname;
@@ -43,7 +48,7 @@
           })
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nur; };
+        specialArgs = { inherit inputs nur nix-flatpak; };
       };
     in
     {
