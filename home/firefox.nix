@@ -27,9 +27,9 @@
           "browser.tabs.tabClipWidth" = 83;
           "browser.tabs.animate" = true;
           
-          # Completely disable native sidebar for cleaner Sidebery experience
-          "sidebar.position_start" = false;
-          "sidebar.revamp" = false;
+          # Enable sidebar functionality for Sidebery
+          "sidebar.position_start" = true;
+          "sidebar.revamp" = true;
           
           # Privacy settings (Zen-like defaults)
           "privacy.trackingprotection.enabled" = true;
@@ -128,7 +128,7 @@
           };
         };
         
-        # Clean Zen-style theme without the non-functional hamburger button
+        # Fixed theme that keeps sidebar functionality but styles it for Sidebery
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -164,22 +164,41 @@
             margin-bottom: 0 !important;
           }
           
-          /* COMPLETELY HIDE NATIVE SIDEBAR */
-          #sidebar-box,
-          #sidebar,
-          #sidebar-header,
-          #sidebar-splitter {
-            display: none !important;
-            visibility: hidden !important;
-            width: 0 !important;
+          /* Keep sidebar but style it for Sidebery */
+          #sidebar-box {
+            background-color: var(--zen-bg-secondary) !important;
+            border-right: 1px solid var(--zen-border-light) !important;
             min-width: 0 !important;
-            max-width: 0 !important;
+            max-width: 400px !important;
           }
           
-          /* Hide all native sidebar buttons */
-          #sidebar-button,
-          #sidebar-switcher-target,
-          .sidebar-button {
+          /* Hide sidebar header for cleaner look */
+          #sidebar-header {
+            display: none !important;
+          }
+          
+          /* Style sidebar content for Sidebery */
+          #sidebar {
+            background-color: var(--zen-bg-secondary) !important;
+            border: none !important;
+          }
+          
+          /* Style sidebar splitter */
+          #sidebar-splitter {
+            background-color: var(--zen-border-light) !important;
+            border: none !important;
+            width: 1px !important;
+            transition: all 0.2s ease !important;
+          }
+          
+          #sidebar-splitter:hover {
+            background-color: var(--zen-accent-primary) !important;
+            width: 3px !important;
+            box-shadow: 0 0 8px rgba(0, 120, 212, 0.3) !important;
+          }
+          
+          /* Hide native sidebar buttons from toolbar (we'll use extension button) */
+          #sidebar-button {
             display: none !important;
           }
           
@@ -188,7 +207,7 @@
             background-color: var(--zen-bg-primary) !important;
           }
           
-          /* CLEAN THIN TOOLBAR - No fake hamburger button */
+          /* CLEAN THIN TOOLBAR */
           #nav-bar {
             background: var(--zen-bg-secondary) !important;
             border-bottom: 1px solid var(--zen-border-light) !important;
@@ -230,7 +249,7 @@
             color: var(--zen-text-muted) !important;
           }
           
-          /* Compact button styling - includes extension buttons */
+          /* Compact button styling */
           .toolbarbutton-1 {
             fill: var(--zen-text-secondary) !important;
             color: var(--zen-text-secondary) !important;
@@ -248,7 +267,7 @@
             color: var(--zen-text-primary) !important;
           }
           
-          /* Style extension buttons specifically (including Sidebery) */
+          /* Style extension buttons specifically */
           .webextension-browser-action {
             background-color: var(--zen-bg-tertiary) !important;
             border: 1px solid var(--zen-border-light) !important;
@@ -321,12 +340,6 @@
           #star-button-box,
           #pocket-button,
           #fxa-toolbar-menu-button {
-            display: none !important;
-          }
-          
-          /* Hide any remaining sidebar-related elements */
-          [id*="sidebar"]:not(#nav-bar-customization-target),
-          [class*="sidebar"] {
             display: none !important;
           }
           
