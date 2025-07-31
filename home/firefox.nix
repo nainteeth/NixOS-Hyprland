@@ -5,7 +5,7 @@
     enable = true;
     
     # Set Firefox as default browser
-    package = pkgs.firefox;
+    package = pkgs.firefox-wayland;
     
     profiles = {
       default = {
