@@ -13,6 +13,8 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -38,6 +40,12 @@
             # Set hostname for each system
             networking.hostName = hostname;
           }
+
+	  # nur:
+	   ({ pkgs, ... }: {
+             nixpkgs.overlays = [ nur.overlays.default ];
+           })
+
         ] ++ extraModules;
         
         specialArgs = { inherit inputs; };
