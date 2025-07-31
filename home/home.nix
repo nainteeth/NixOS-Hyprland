@@ -20,5 +20,6 @@
     ./nvim.nix
     ./screenshot.nix
     ./firefox.nix
+    ./flatpak.nix
   ];
 }

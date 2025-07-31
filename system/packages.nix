@@ -38,7 +38,6 @@
     mako
 
     # Applications
-    discord-ptb
     keepassxc
     signal-desktop
     spotify
