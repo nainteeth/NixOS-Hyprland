@@ -128,7 +128,7 @@
           };
         };
         
-        # Enhanced Zen-style theme with thin toolbar and working Sidebery toggle
+        # Clean Zen-style theme without the non-functional hamburger button
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -188,7 +188,7 @@
             background-color: var(--zen-bg-primary) !important;
           }
           
-          /* THIN TOOLBAR with proper Sidebery integration */
+          /* CLEAN THIN TOOLBAR - No fake hamburger button */
           #nav-bar {
             background: var(--zen-bg-secondary) !important;
             border-bottom: 1px solid var(--zen-border-light) !important;
@@ -200,34 +200,6 @@
             max-height: var(--zen-toolbar-height) !important;
             display: flex !important;
             align-items: center !important;
-          }
-          
-          /* Add actual working Sidebery toggle button */
-          #nav-bar-customization-target::before {
-            content: "☰";
-            background-color: var(--zen-bg-tertiary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 4px !important;
-            padding: 4px 6px !important;
-            margin-right: 6px !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
-            font-size: 12px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            min-width: 24px !important;
-            height: 24px !important;
-            order: -1 !important;
-            flex-shrink: 0 !important;
-          }
-          
-          #nav-bar-customization-target::before:hover {
-            background-color: var(--zen-bg-hover) !important;
-            border-color: var(--zen-accent-primary) !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
           }
           
           /* Style the URL bar for thin toolbar */
@@ -258,7 +230,7 @@
             color: var(--zen-text-muted) !important;
           }
           
-          /* Compact button styling */
+          /* Compact button styling - includes extension buttons */
           .toolbarbutton-1 {
             fill: var(--zen-text-secondary) !important;
             color: var(--zen-text-secondary) !important;
@@ -274,6 +246,21 @@
             background-color: var(--zen-bg-hover) !important;
             fill: var(--zen-text-primary) !important;
             color: var(--zen-text-primary) !important;
+          }
+          
+          /* Style extension buttons specifically (including Sidebery) */
+          .webextension-browser-action {
+            background-color: var(--zen-bg-tertiary) !important;
+            border: 1px solid var(--zen-border-light) !important;
+            border-radius: 4px !important;
+            transition: all 0.2s ease !important;
+          }
+          
+          .webextension-browser-action:hover {
+            background-color: var(--zen-bg-hover) !important;
+            border-color: var(--zen-accent-primary) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
           }
           
           /* Menu styling */
@@ -370,7 +357,8 @@
           /* Zen-like subtle shadows */
           #urlbar:focus-within,
           .toolbarbutton-1:hover,
-          menuitem:hover {
+          menuitem:hover,
+          .webextension-browser-action:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
           }
         '';
