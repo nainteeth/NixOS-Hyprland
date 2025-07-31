@@ -27,9 +27,9 @@
           "browser.tabs.tabClipWidth" = 83;
           "browser.tabs.animate" = true;
           
-          # Sidebery-specific optimizations
-          "sidebar.position_start" = true;
-          "sidebar.revamp" = true;
+          # Completely disable native sidebar for cleaner Sidebery experience
+          "sidebar.position_start" = false;
+          "sidebar.revamp" = false;
           
           # Privacy settings (Zen-like defaults)
           "privacy.trackingprotection.enabled" = true;
@@ -133,7 +133,7 @@
           };
         };
         
-        # Enhanced Zen-style theme optimized for Sidebery
+        # Enhanced Zen-style theme with native sidebar completely hidden
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -159,133 +159,106 @@
             --zen-border-medium: #606060;
             --zen-border-dark: #2d2d2d;
             
-            /* Sidebery-optimized Sidebar */
+            /* Sidebery sidebar */
             --zen-sidebar-width: 320px;
-            --zen-sidebar-collapsed-width: 48px;
+            --zen-sidebar-collapsed-width: 0px;
             --zen-sidebar-bg: var(--zen-bg-secondary);
-            --zen-sidebar-transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --zen-sidebar-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
           
-          /* Hide default tab bar for Sidebery */
+          /* Hide default tab bar */
           #TabsToolbar {
             visibility: collapse !important;
             margin-bottom: 0 !important;
           }
           
-          /* Enhanced sidebar optimized for Sidebery */
-          #sidebar-box {
-            background-color: var(--zen-sidebar-bg) !important;
-            border-right: 1px solid var(--zen-border-light) !important;
-            min-width: var(--zen-sidebar-collapsed-width) !important;
-            max-width: var(--zen-sidebar-width) !important;
-            width: var(--zen-sidebar-width) !important;
-            transition: width var(--zen-sidebar-transition), min-width var(--zen-sidebar-transition) !important;
-            position: relative !important;
-            overflow: visible !important;
-          }
-          
-          /* Sidebery auto-hide functionality */
-          #sidebar-box:not(:hover):not(:focus-within) {
-            width: var(--zen-sidebar-collapsed-width) !important;
-            min-width: var(--zen-sidebar-collapsed-width) !important;
-          }
-          
-          #sidebar-box:not(:hover):not(:focus-within) #sidebar {
-            opacity: 0.8 !important;
-          }
-          
-          /* Smooth expand on hover */
-          #sidebar-box:hover,
-          #sidebar-box:focus-within {
-            width: var(--zen-sidebar-width) !important;
-            min-width: var(--zen-sidebar-width) !important;
-            z-index: 999 !important;
-          }
-          
-          /* Sidebery-specific header styling */
-          #sidebar-header {
-            background-color: var(--zen-bg-secondary) !important;
-            border-bottom: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            padding: 8px 12px !important;
-            min-height: 44px !important;
-            display: flex !important;
-            align-items: center !important;
-          }
-          
-          /* Hide sidebar header when collapsed for cleaner look */
-          #sidebar-box:not(:hover):not(:focus-within) #sidebar-header {
-            padding: 8px 4px !important;
-          }
-          
-          #sidebar-box:not(:hover):not(:focus-within) #sidebar-header .sidebar-title {
-            opacity: 0 !important;
-            transform: scale(0.8) !important;
-          }
-          
-          /* Sidebar content optimized for Sidebery */
-          #sidebar {
-            background-color: var(--zen-sidebar-bg) !important;
-            transition: opacity var(--zen-sidebar-transition) !important;
-            border: none !important;
-          }
-          
-          /* Enhanced sidebar splitter */
+          /* COMPLETELY HIDE NATIVE SIDEBAR */
+          #sidebar-box,
+          #sidebar,
+          #sidebar-header,
           #sidebar-splitter {
-            background-color: transparent !important;
-            border: none !important;
-            width: 1px !important;
-            transition: all 0.2s ease !important;
-            position: relative !important;
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            min-width: 0 !important;
+            max-width: 0 !important;
           }
           
-          #sidebar-splitter::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background-color: var(--zen-border-light);
-            transition: all 0.2s ease;
-          }
-          
-          #sidebar-splitter:hover::before {
-            background-color: var(--zen-accent-primary) !important;
-            width: 3px !important;
-            box-shadow: 0 0 8px rgba(0, 120, 212, 0.3) !important;
-          }
-          
-          /* Sidebar toggle button styling */
+          /* Hide all native sidebar buttons from their original location */
           #sidebar-button,
-          #sidebar-switcher-target {
-            background-color: var(--zen-bg-tertiary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
-            transition: all 0.2s ease !important;
-            padding: 6px !important;
+          #sidebar-switcher-target,
+          .sidebar-button {
+            display: none !important;
           }
           
-          #sidebar-button:hover,
-          #sidebar-switcher-target:hover {
-            background-color: var(--zen-bg-hover) !important;
-            border-color: var(--zen-accent-primary) !important;
-            transform: translateY(-1px) !important;
-          }
-          
-          /* Main browser area adjustments */
+          /* Main browser area takes full width */
           #browser {
             background-color: var(--zen-bg-primary) !important;
           }
           
-          /* Toolbar styling */
+          /* Enhanced toolbar with moved sidebar controls */
           #nav-bar {
             background: var(--zen-bg-secondary) !important;
             border-bottom: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
             box-shadow: none !important;
             padding: 6px 12px !important;
+            display: flex !important;
+            align-items: center !important;
+          }
+          
+          /* Add Sidebery toggle button to toolbar */
+          #nav-bar::before {
+            content: "☰";
+            background-color: var(--zen-bg-tertiary) !important;
+            border: 1px solid var(--zen-border-light) !important;
+            color: var(--zen-text-primary) !important;
+            border-radius: 6px !important;
+            padding: 8px 10px !important;
+            margin-right: 8px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            font-size: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-width: 32px !important;
+            height: 32px !important;
+            order: -1 !important;
+          }
+          
+          #nav-bar::before:hover {
+            background-color: var(--zen-bg-hover) !important;
+            border-color: var(--zen-accent-primary) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+          }
+          
+          /* Add bookmarks button to toolbar */
+          #nav-bar::after {
+            content: "★";
+            background-color: var(--zen-bg-tertiary) !important;
+            border: 1px solid var(--zen-border-light) !important;
+            color: var(--zen-text-primary) !important;
+            border-radius: 6px !important;
+            padding: 8px 10px !important;
+            margin-left: 4px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            font-size: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-width: 32px !important;
+            height: 32px !important;
+            order: 999 !important;
+          }
+          
+          #nav-bar::after:hover {
+            background-color: var(--zen-bg-hover) !important;
+            border-color: var(--zen-accent-primary) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(--zen-accent-primary, 0.2) !important;
           }
           
           /* URL bar styling */
@@ -296,6 +269,7 @@
             border-radius: 10px !important;
             transition: all 0.2s ease !important;
             margin: 0 8px !important;
+            flex: 1 !important;
           }
           
           #urlbar:focus-within {
@@ -316,6 +290,7 @@
             border-radius: 8px !important;
             transition: all 0.2s ease !important;
             padding: 8px !important;
+            margin: 0 2px !important;
           }
           
           .toolbarbutton-1:hover {
@@ -348,7 +323,7 @@
             transform: translateX(2px) !important;
           }
           
-          /* Scrollbar styling for Sidebery */
+          /* Scrollbar styling */
           scrollbar {
             background-color: transparent !important;
             width: 6px !important;
@@ -378,7 +353,7 @@
             background-color: var(--zen-bg-primary) !important;
           }
           
-          /* Remove unnecessary elements for cleaner Sidebery workflow */
+          /* Remove unnecessary elements */
           #pageActionButton,
           #star-button-box,
           #pocket-button,
@@ -386,30 +361,12 @@
             display: none !important;
           }
           
-          /* Sidebery hover indicator */
-          #sidebar-box::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--zen-accent-primary), transparent);
-            opacity: 0;
-            transition: opacity var(--zen-sidebar-transition);
-            border-radius: 0 3px 3px 0;
-          }
-          
-          #sidebar-box:not(:hover):not(:focus-within)::before {
-            opacity: 0.6;
-          }
-          
           /* Zen-like floating effect for interactive elements */
           #urlbar:focus-within,
           .toolbarbutton-1:hover,
           menuitem:hover,
-          #sidebar-button:hover {
+          #nav-bar::before:hover,
+          #nav-bar::after:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
           }
           
@@ -430,26 +387,29 @@
             animation: fadeInUp 0.2s ease-out !important;
           }
           
-          /* Sidebery quick access hint */
-          #sidebar-box::after {
-            content: "Hover to expand";
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--zen-text-muted);
-            font-size: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            background: var(--zen-bg-secondary);
-            padding: 4px 8px;
-            border-radius: 4px;
-            white-space: nowrap;
+          /* Ensure toolbar items are properly ordered */
+          #nav-bar-customization-target {
+            display: flex !important;
+            align-items: center !important;
+            flex: 1 !important;
           }
           
-          #sidebar-box:not(:hover):not(:focus-within):hover::after {
-            opacity: 0.8;
+          /* Style the nav bar children for better layout */
+          #nav-bar > * {
+            display: flex !important;
+            align-items: center !important;
+          }
+          
+          /* Hide any remaining sidebar-related elements */
+          [id*="sidebar"],
+          [class*="sidebar"] {
+            display: none !important;
+          }
+          
+          /* Exception for our custom toolbar elements */
+          #nav-bar::before,
+          #nav-bar::after {
+            display: flex !important;
           }
         '';
         
@@ -463,7 +423,7 @@
             }
           }
           
-          /* Sidebery-optimized scrollbar styling for web content */
+          /* Scrollbar styling for web content */
           * {
             scrollbar-width: thin !important;
             scrollbar-color: #404040 #2d2d2d !important;
