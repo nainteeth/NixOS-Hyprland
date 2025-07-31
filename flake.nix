@@ -17,7 +17,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -40,15 +40,13 @@
             # Set hostname for each system
             networking.hostName = hostname;
           }
-
-	  # nur:
-	   ({ pkgs, ... }: {
-             nixpkgs.overlays = [ nur.overlays.default ];
-           })
-
+	    # NUR:
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [ nur.overlay ];
+          })
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs nur; };
       };
     in
     {

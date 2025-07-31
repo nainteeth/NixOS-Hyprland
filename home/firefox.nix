@@ -79,14 +79,15 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Extensions for Zen-like functionality
+        # Extensions for Zen-like functionality - FIXED
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           tree-style-tab          # Essential for sidebar tabs
-          darkreader             # Better dark mode for websites  
-          stylus                 # For custom CSS styling
+          darkreader              # Better dark mode for websites  
+          stylus                  # For custom CSS styling
           privacy-badger
           decentraleyes
+          clearurls               # Remove tracking parameters
           # Add more extensions as needed
         ];
         
