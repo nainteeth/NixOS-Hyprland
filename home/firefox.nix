@@ -13,7 +13,7 @@
         name = "zen-style";
         isDefault = true;
         
-        # Firefox preferences optimized for Zen-like experience with Sidebery
+        # Firefox preferences optimized for native vertical tabs
         settings = {
           # Zen Browser-like interface optimizations
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -21,15 +21,21 @@
           "layout.css.backdrop-filter.enabled" = true;
           "layout.css.color-mix.enabled" = true;
           
-          # Tab behavior for sidebar tabs - optimized for Sidebery
-          "browser.tabs.tabmanager.enabled" = false;
-          "browser.tabs.firefox-view" = false;
+          # Enable native vertical tabs
+          "sidebar.verticalTabs" = true;
+          "sidebar.revamp" = true;
+          "browser.tabs.inTitlebar" = 0;
+          "browser.tabs.drawInTitlebar" = false;
+          
+          # Tab behavior optimized for vertical layout
+          "browser.tabs.tabmanager.enabled" = true;
+          "browser.tabs.firefox-view" = true;
           "browser.tabs.tabClipWidth" = 83;
           "browser.tabs.animate" = true;
+          "browser.tabs.warnOnClose" = false;
           
-          # Enable sidebar functionality for Sidebery
+          # Sidebar positioning
           "sidebar.position_start" = true;
-          "sidebar.revamp" = true;
           
           # Privacy settings (Zen-like defaults)
           "privacy.trackingprotection.enabled" = true;
@@ -44,12 +50,11 @@
           "gfx.webrender.all" = true;
           "media.ffmpeg.vaapi.enabled" = true;
           
-          # UI preferences for clean Zen-like interface
+          # UI preferences for clean interface with vertical tabs
           "browser.startup.homepage" = "about:home";
           "browser.newtabpage.enabled" = true;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.showSponsored" = false;
-          "browser.tabs.warnOnClose" = false;
           "browser.urlbar.suggest.searches" = true;
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;
           "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
@@ -83,10 +88,9 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Minimal extensions - only essential ones
+        # Extentions 
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin       # Ad blocking
-          sidebery            # Tree-style tabs (essential for sidebar)
+          ublock-origin       # Ad blocking only
         ];
         
         # Bookmarks section
@@ -128,7 +132,7 @@
           };
         };
         
-        # Enhanced theme with Sidebery auto-hide and color matching
+        # Theme optimized for native vertical tabs
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -157,26 +161,26 @@
             /* Toolbar height */
             --zen-toolbar-height: 36px;
             
-            /* Sidebery dimensions */
-            --sidebery-width-expanded: 300px;
-            --sidebery-width-collapsed: 48px;
-            --sidebery-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Vertical tabs dimensions */
+            --vertical-tabs-width: 250px;
+            --vertical-tabs-collapsed-width: 48px;
+            --vertical-tabs-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
           
-          /* Hide default tab bar */
+          /* Hide horizontal tab bar completely */
           #TabsToolbar {
             visibility: collapse !important;
             margin-bottom: 0 !important;
           }
           
-          /* Sidebery auto-hide functionality */
+          /* Style native sidebar for vertical tabs */
           #sidebar-box {
             background-color: var(--zen-bg-secondary) !important;
             border-right: 1px solid var(--zen-border-light) !important;
-            min-width: var(--sidebery-width-collapsed) !important;
-            width: var(--sidebery-width-collapsed) !important;
-            max-width: var(--sidebery-width-expanded) !important;
-            transition: width var(--sidebery-transition), min-width var(--sidebery-transition) !important;
+            min-width: var(--vertical-tabs-collapsed-width) !important;
+            width: var(--vertical-tabs-collapsed-width) !important;
+            max-width: var(--vertical-tabs-width) !important;
+            transition: width var(--vertical-tabs-transition), min-width var(--vertical-tabs-transition) !important;
             position: relative !important;
             overflow: hidden !important;
           }
@@ -184,26 +188,31 @@
           /* Expand on hover */
           #sidebar-box:hover,
           #sidebar-box:focus-within {
-            width: var(--sidebery-width-expanded) !important;
-            min-width: var(--sidebery-width-expanded) !important;
+            width: var(--vertical-tabs-width) !important;
+            min-width: var(--vertical-tabs-width) !important;
             overflow: visible !important;
           }
           
-          /* Hide sidebar header for cleaner look */
+          /* Style sidebar header */
           #sidebar-header {
-            display: none !important;
+            background-color: var(--zen-bg-secondary) !important;
+            border-bottom: 1px solid var(--zen-border-light) !important;
+            color: var(--zen-text-primary) !important;
+            padding: 4px 8px !important;
+            min-height: 32px !important;
           }
           
-          /* Style sidebar content for Sidebery with matching colors */
+          /* Style sidebar content */
           #sidebar {
             background-color: var(--zen-bg-secondary) !important;
             border: none !important;
-            transition: opacity var(--sidebery-transition) !important;
+            color: var(--zen-text-primary) !important;
+            transition: opacity var(--vertical-tabs-transition) !important;
           }
           
           /* Fade content when collapsed */
           #sidebar-box:not(:hover):not(:focus-within) #sidebar {
-            opacity: 0.7 !important;
+            opacity: 0.8 !important;
           }
           
           /* Style sidebar splitter */
@@ -221,9 +230,38 @@
             box-shadow: 0 0 8px rgba(0, 120, 212, 0.3) !important;
           }
           
-          /* Hide native sidebar buttons from toolbar */
-          #sidebar-button {
-            display: none !important;
+          /* Style native vertical tabs */
+          .sidebar-panel[data-panel="tabs"] {
+            background-color: var(--zen-bg-secondary) !important;
+            color: var(--zen-text-primary) !important;
+          }
+          
+          /* Style tab items in vertical sidebar */
+          .tab-item,
+          .tab {
+            background-color: transparent !important;
+            border-radius: 4px !important;
+            margin: 2px 4px !important;
+            padding: 8px !important;
+            transition: all 0.2s ease !important;
+            color: var(--zen-text-secondary) !important;
+            border: 1px solid transparent !important;
+          }
+          
+          .tab-item:hover,
+          .tab:hover {
+            background-color: var(--zen-bg-hover) !important;
+            color: var(--zen-text-primary) !important;
+            border-color: var(--zen-border-light) !important;
+          }
+          
+          .tab-item.active,
+          .tab.selected,
+          .tab[selected] {
+            background-color: var(--zen-accent-primary) !important;
+            color: var(--zen-text-primary) !important;
+            border-color: var(--zen-accent-hover) !important;
+            box-shadow: 0 2px 6px rgba(0, 120, 212, 0.3) !important;
           }
           
           /* Add hover indicator for collapsed sidebar */
@@ -237,7 +275,7 @@
             height: 60px;
             background: linear-gradient(to bottom, transparent, var(--zen-accent-primary), transparent);
             opacity: 0;
-            transition: opacity var(--sidebery-transition);
+            transition: opacity var(--vertical-tabs-transition);
             border-radius: 0 3px 3px 0;
             z-index: 1000;
           }
@@ -311,15 +349,15 @@
             color: var(--zen-text-primary) !important;
           }
           
-          /* Style extension buttons specifically */
-          .webextension-browser-action {
+          /* Style sidebar toggle button in toolbar */
+          #sidebar-button {
             background-color: var(--zen-bg-tertiary) !important;
             border: 1px solid var(--zen-border-light) !important;
             border-radius: 4px !important;
             transition: all 0.2s ease !important;
           }
           
-          .webextension-browser-action:hover {
+          #sidebar-button:hover {
             background-color: var(--zen-bg-hover) !important;
             border-color: var(--zen-accent-primary) !important;
             transform: translateY(-1px) !important;
@@ -415,11 +453,11 @@
           #urlbar:focus-within,
           .toolbarbutton-1:hover,
           menuitem:hover,
-          .webextension-browser-action:hover {
+          #sidebar-button:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
           }
           
-          /* Sidebery hover hint when collapsed */
+          /* Sidebar hint when collapsed */
           #sidebar-box::after {
             content: "→";
             position: absolute;
@@ -438,140 +476,8 @@
           }
         '';
         
-        # Enhanced userContent to style Sidebery extension content
+        # Clean userContent without Sidebery-specific styling
         userContent = ''
-          /* Sidebery color matching - applies to the extension's UI */
-          @-moz-document url-prefix("moz-extension://") {
-            :root {
-              /* Override Sidebery's CSS variables to match Firefox */
-              --bg: #2d2d2d !important;
-              --bg-2: #3d3d3d !important;
-              --bg-3: #404040 !important;
-              --bg-hover: #404040 !important;
-              --bg-active: #4a4a4a !important;
-              
-              /* Text colors */
-              --title-fg: #ffffff !important;
-              --label-fg: #cccccc !important;
-              --info-fg: #999999 !important;
-              
-              /* Borders */
-              --border: #404040 !important;
-              --border-light: #606060 !important;
-              
-              /* Accent colors */
-              --accent: #0078d4 !important;
-              --accent-hover: #106ebe !important;
-              --accent-active: #005a9e !important;
-              
-              /* Tab colors */
-              --tab-fg: #cccccc !important;
-              --tab-bg: transparent !important;
-              --tab-active-fg: #ffffff !important;
-              --tab-active-bg: #404040 !important;
-              --tab-selected-fg: #ffffff !important;
-              --tab-selected-bg: #0078d4 !important;
-              
-              /* Toolbar colors */
-              --toolbar-bg: #2d2d2d !important;
-              --toolbar-fg: #cccccc !important;
-              
-              /* Button colors */
-              --btn-bg: #3d3d3d !important;
-              --btn-fg: #cccccc !important;
-              --btn-hover-bg: #404040 !important;
-              --btn-hover-fg: #ffffff !important;
-              
-              /* Input colors */
-              --input-bg: #3d3d3d !important;
-              --input-fg: #ffffff !important;
-              --input-border: #404040 !important;
-              --input-focus-border: #0078d4 !important;
-              
-              /* Scrollbar */
-              --scroll-bg: transparent !important;
-              --scroll-thumb: #404040 !important;
-              --scroll-thumb-hover: #606060 !important;
-            }
-            
-            /* Additional Sidebery-specific styling */
-            body {
-              background-color: #2d2d2d !important;
-              color: #ffffff !important;
-            }
-            
-            /* Style tab items */
-            .Tab {
-              background-color: transparent !important;
-              border-radius: 4px !important;
-              margin: 1px 4px !important;
-              transition: all 0.2s ease !important;
-            }
-            
-            .Tab:hover {
-              background-color: #404040 !important;
-            }
-            
-            .Tab.active {
-              background-color: #0078d4 !important;
-              color: #ffffff !important;
-            }
-            
-            /* Style toolbar buttons */
-            .toolbar-btn,
-            .nav-btn {
-              background-color: #3d3d3d !important;
-              border: 1px solid #404040 !important;
-              border-radius: 4px !important;
-              color: #cccccc !important;
-              transition: all 0.2s ease !important;
-            }
-            
-            .toolbar-btn:hover,
-            .nav-btn:hover {
-              background-color: #404040 !important;
-              border-color: #0078d4 !important;
-              color: #ffffff !important;
-            }
-            
-            /* Style search input */
-            .search-input,
-            input[type="text"] {
-              background-color: #3d3d3d !important;
-              border: 1px solid #404040 !important;
-              border-radius: 4px !important;
-              color: #ffffff !important;
-              padding: 4px 8px !important;
-            }
-            
-            .search-input:focus,
-            input[type="text"]:focus {
-              border-color: #0078d4 !important;
-              box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
-            }
-            
-            /* Style panels */
-            .panel {
-              background-color: #2d2d2d !important;
-              border-right: 1px solid #404040 !important;
-            }
-            
-            /* Style scrollbars within Sidebery */
-            ::-webkit-scrollbar {
-              width: 6px !important;
-              background: transparent !important;
-            }
-            
-            ::-webkit-scrollbar-thumb {
-              background: #404040 !important;
-              border-radius: 6px !important;
-            }
-            
-            ::-webkit-scrollbar-thumb:hover {
-              background: #606060 !important;
-            }
-          }
-          
           /* Enhanced dark theme for web content */
           @-moz-document url-prefix("about:") {
             body {
@@ -592,7 +498,7 @@
           }
         '';
         
-        # Container tabs for organization (works great with Sidebery)
+        # Container tabs for organization
         containers = {
           work = {
             color = "blue";
