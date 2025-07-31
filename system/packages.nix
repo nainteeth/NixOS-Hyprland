@@ -35,6 +35,7 @@
     pavucontrol
     adwaita-icon-theme
     networkmanagerapplet
+    mako
 
     # Applications
     discord-ptb

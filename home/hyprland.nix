@@ -267,6 +267,7 @@ in
         "hyprpaper"
         "waypaper --restore"
         "signal-desktop"
+        "mako"
       ];
     };
   };
