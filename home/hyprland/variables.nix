@@ -1,7 +1,0 @@
-{
-  terminal = "kitty";
-  fileManager = "thunar";
-  menu = "wofi --show drun";
-  browser = "firefox";
-  mainMod = "SUPER";
-}

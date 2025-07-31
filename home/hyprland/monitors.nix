@@ -1,3 +1,1 @@
-{
-  monitor = [ ",preferred,auto,auto" ];
-}
+[ ",preferred,auto,auto" ]
