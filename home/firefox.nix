@@ -79,8 +79,8 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Extensions for Zen-like functionality - FIXED
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        # Extensions for Zen-like functionality - FIXED: moved to extensions.packages
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           tree-style-tab          # Essential for sidebar tabs
           darkreader              # Better dark mode for websites  
@@ -91,15 +91,18 @@
           # Add more extensions as needed
         ];
         
-        # Bookmarks section (empty but ready for future use)
-        bookmarks = [
-          # Future bookmarks will go here
-        ];
+        # Bookmarks section - FIXED: new submodule format
+        bookmarks = {
+          force = true;
+          settings = [
+            # Future bookmarks will go here
+          ];
+        };
         
-        # Search engines with DuckDuckGo as default
+        # Search engines with DuckDuckGo as default - FIXED: use 'ddg' ID
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {
             "Nix Packages" = {
               urls = [{
@@ -115,14 +118,15 @@
             
             "NixOS Wiki" = {
               urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
-              updateInterval = 24 * 60 * 60 * 1000;
+              # FIXED: use icon instead of iconUpdateURL
+              icon = "https://nixos.wiki/favicon.png";
               definedAliases = [ "@nw" ];
             };
             
             "GitHub" = {
               urls = [{ template = "https://github.com/search?q={searchTerms}"; }];
-              iconUpdateURL = "https://github.com/favicon.ico";
+              # FIXED: use icon instead of iconUpdateURL  
+              icon = "https://github.com/favicon.ico";
               definedAliases = [ "@gh" ];
             };
           };

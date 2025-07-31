@@ -36,13 +36,15 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.nainteeth = import ./home/home.nix;
+              # Add backup extension to handle existing files
+              backupFileExtension = "backup";
             };
             # Set hostname for each system
             networking.hostName = hostname;
           }
-	    # NUR:
+	    # NUR - FIXED: use overlays.default instead of overlay
           ({ pkgs, ... }: {
-            nixpkgs.overlays = [ nur.overlay ];
+            nixpkgs.overlays = [ nur.overlays.default ];
           })
         ] ++ extraModules;
         
