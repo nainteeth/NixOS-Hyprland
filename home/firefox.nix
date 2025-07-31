@@ -92,7 +92,6 @@
           privacy-badger
           decentraleyes
           clearurls               # Remove tracking parameters
-          # Removed tree-style-tab - using sidebery instead
         ];
         
         # Bookmarks section
@@ -241,7 +240,7 @@
           }
           
           #sidebar-splitter::before {
-            content: '';
+            content: "";
             position: absolute;
             left: 0;
             top: 0;
@@ -389,7 +388,7 @@
           
           /* Sidebery hover indicator */
           #sidebar-box::before {
-            content: '';
+            content: "";
             position: absolute;
             left: 0;
             top: 50%;
