@@ -83,15 +83,10 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Extensions optimized for Sidebery workflow
+        # Minimal extensions - only essential ones
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          sidebery                # Modern tree-style tab management with better UX
-          darkreader              # Better dark mode for websites  
-          stylus                  # For custom CSS styling
-          privacy-badger
-          decentraleyes
-          clearurls               # Remove tracking parameters
+          ublock-origin       # Ad blocking
+          sidebery            # Tree-style tabs (essential for sidebar)
         ];
         
         # Bookmarks section
@@ -133,7 +128,7 @@
           };
         };
         
-        # Enhanced Zen-style theme with native sidebar completely hidden
+        # Enhanced Zen-style theme with thin toolbar and working Sidebery toggle
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -159,11 +154,8 @@
             --zen-border-medium: #606060;
             --zen-border-dark: #2d2d2d;
             
-            /* Sidebery sidebar */
-            --zen-sidebar-width: 320px;
-            --zen-sidebar-collapsed-width: 0px;
-            --zen-sidebar-bg: var(--zen-bg-secondary);
-            --zen-sidebar-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Toolbar height */
+            --zen-toolbar-height: 36px;
           }
           
           /* Hide default tab bar */
@@ -184,120 +176,104 @@
             max-width: 0 !important;
           }
           
-          /* Hide all native sidebar buttons from their original location */
+          /* Hide all native sidebar buttons */
           #sidebar-button,
           #sidebar-switcher-target,
           .sidebar-button {
             display: none !important;
           }
           
-          /* Main browser area takes full width */
+          /* Main browser area */
           #browser {
             background-color: var(--zen-bg-primary) !important;
           }
           
-          /* Enhanced toolbar with moved sidebar controls */
+          /* THIN TOOLBAR with proper Sidebery integration */
           #nav-bar {
             background: var(--zen-bg-secondary) !important;
             border-bottom: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
             box-shadow: none !important;
-            padding: 6px 12px !important;
+            padding: 2px 8px !important;
+            height: var(--zen-toolbar-height) !important;
+            min-height: var(--zen-toolbar-height) !important;
+            max-height: var(--zen-toolbar-height) !important;
             display: flex !important;
             align-items: center !important;
           }
           
-          /* Add Sidebery toggle button to toolbar */
-          #nav-bar::before {
+          /* Add actual working Sidebery toggle button */
+          #nav-bar-customization-target::before {
             content: "☰";
             background-color: var(--zen-bg-tertiary) !important;
             border: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
-            padding: 8px 10px !important;
-            margin-right: 8px !important;
+            border-radius: 4px !important;
+            padding: 4px 6px !important;
+            margin-right: 6px !important;
             cursor: pointer !important;
             transition: all 0.2s ease !important;
-            font-size: 14px !important;
+            font-size: 12px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            min-width: 32px !important;
-            height: 32px !important;
+            min-width: 24px !important;
+            height: 24px !important;
             order: -1 !important;
+            flex-shrink: 0 !important;
           }
           
-          #nav-bar::before:hover {
+          #nav-bar-customization-target::before:hover {
             background-color: var(--zen-bg-hover) !important;
             border-color: var(--zen-accent-primary) !important;
             transform: translateY(-1px) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
           }
           
-          /* Add bookmarks button to toolbar */
-          #nav-bar::after {
-            content: "★";
-            background-color: var(--zen-bg-tertiary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
-            padding: 8px 10px !important;
-            margin-left: 4px !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
-            font-size: 14px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            min-width: 32px !important;
-            height: 32px !important;
-            order: 999 !important;
-          }
-          
-          #nav-bar::after:hover {
-            background-color: var(--zen-bg-hover) !important;
-            border-color: var(--zen-accent-primary) !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 4px 12px rgba(--zen-accent-primary, 0.2) !important;
-          }
-          
-          /* URL bar styling */
+          /* Style the URL bar for thin toolbar */
           #urlbar {
             background-color: var(--zen-bg-tertiary) !important;
             border: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
-            border-radius: 10px !important;
+            border-radius: 6px !important;
             transition: all 0.2s ease !important;
-            margin: 0 8px !important;
+            margin: 0 4px !important;
             flex: 1 !important;
+            height: 26px !important;
+            min-height: 26px !important;
           }
           
           #urlbar:focus-within {
             background-color: var(--zen-bg-hover) !important;
             border-color: var(--zen-accent-primary) !important;
-            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.2) !important;
-            transform: translateY(-1px) !important;
+            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
+          }
+          
+          #urlbar-input {
+            padding: 2px 8px !important;
+            font-size: 13px !important;
           }
           
           #urlbar-input::placeholder {
             color: var(--zen-text-muted) !important;
           }
           
-          /* Button styling */
+          /* Compact button styling */
           .toolbarbutton-1 {
             fill: var(--zen-text-secondary) !important;
             color: var(--zen-text-secondary) !important;
-            border-radius: 8px !important;
+            border-radius: 4px !important;
             transition: all 0.2s ease !important;
-            padding: 8px !important;
-            margin: 0 2px !important;
+            padding: 4px !important;
+            margin: 0 1px !important;
+            min-width: 24px !important;
+            height: 24px !important;
           }
           
           .toolbarbutton-1:hover {
             background-color: var(--zen-bg-hover) !important;
             fill: var(--zen-text-primary) !important;
             color: var(--zen-text-primary) !important;
-            transform: translateY(-1px) !important;
           }
           
           /* Menu styling */
@@ -305,22 +281,22 @@
             background-color: var(--zen-bg-secondary) !important;
             border: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
-            border-radius: 10px !important;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
             padding: 4px !important;
           }
           
           menuitem {
             color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
+            border-radius: 4px !important;
             margin: 2px !important;
-            padding: 8px 12px !important;
+            padding: 6px 10px !important;
             transition: all 0.15s ease !important;
+            font-size: 13px !important;
           }
           
           menuitem:hover {
             background-color: var(--zen-bg-hover) !important;
-            transform: translateX(2px) !important;
           }
           
           /* Scrollbar styling */
@@ -344,7 +320,7 @@
             background-color: var(--zen-bg-secondary) !important;
             border: 1px solid var(--zen-border-light) !important;
             color: var(--zen-text-primary) !important;
-            border-radius: 8px !important;
+            border-radius: 6px !important;
             backdrop-filter: blur(10px) !important;
           }
           
@@ -361,13 +337,18 @@
             display: none !important;
           }
           
-          /* Zen-like floating effect for interactive elements */
-          #urlbar:focus-within,
-          .toolbarbutton-1:hover,
-          menuitem:hover,
-          #nav-bar::before:hover,
-          #nav-bar::after:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+          /* Hide any remaining sidebar-related elements */
+          [id*="sidebar"]:not(#nav-bar-customization-target),
+          [class*="sidebar"] {
+            display: none !important;
+          }
+          
+          /* Ensure toolbar layout is compact */
+          #nav-bar-customization-target {
+            display: flex !important;
+            align-items: center !important;
+            flex: 1 !important;
+            height: 100% !important;
           }
           
           /* Custom animations */
@@ -382,34 +363,15 @@
             }
           }
           
-          /* Apply animations to menus */
           menupopup {
             animation: fadeInUp 0.2s ease-out !important;
           }
           
-          /* Ensure toolbar items are properly ordered */
-          #nav-bar-customization-target {
-            display: flex !important;
-            align-items: center !important;
-            flex: 1 !important;
-          }
-          
-          /* Style the nav bar children for better layout */
-          #nav-bar > * {
-            display: flex !important;
-            align-items: center !important;
-          }
-          
-          /* Hide any remaining sidebar-related elements */
-          [id*="sidebar"],
-          [class*="sidebar"] {
-            display: none !important;
-          }
-          
-          /* Exception for our custom toolbar elements */
-          #nav-bar::before,
-          #nav-bar::after {
-            display: flex !important;
+          /* Zen-like subtle shadows */
+          #urlbar:focus-within,
+          .toolbarbutton-1:hover,
+          menuitem:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
           }
         '';
         
