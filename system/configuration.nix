@@ -137,7 +137,6 @@
     nwg-look
    
     #lutris 
-    inputs.zen-browser.packages."${system}".default  
     fastfetch
     pavucontrol
     adwaita-icon-theme
