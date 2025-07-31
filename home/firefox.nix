@@ -128,7 +128,7 @@
           };
         };
         
-        # Fixed theme that keeps sidebar functionality but styles it for Sidebery
+        # Enhanced theme with Sidebery auto-hide and color matching
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -156,6 +156,11 @@
             
             /* Toolbar height */
             --zen-toolbar-height: 36px;
+            
+            /* Sidebery dimensions */
+            --sidebery-width-expanded: 300px;
+            --sidebery-width-collapsed: 48px;
+            --sidebery-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
           
           /* Hide default tab bar */
@@ -164,12 +169,24 @@
             margin-bottom: 0 !important;
           }
           
-          /* Keep sidebar but style it for Sidebery */
+          /* Sidebery auto-hide functionality */
           #sidebar-box {
             background-color: var(--zen-bg-secondary) !important;
             border-right: 1px solid var(--zen-border-light) !important;
-            min-width: 0 !important;
-            max-width: 400px !important;
+            min-width: var(--sidebery-width-collapsed) !important;
+            width: var(--sidebery-width-collapsed) !important;
+            max-width: var(--sidebery-width-expanded) !important;
+            transition: width var(--sidebery-transition), min-width var(--sidebery-transition) !important;
+            position: relative !important;
+            overflow: hidden !important;
+          }
+          
+          /* Expand on hover */
+          #sidebar-box:hover,
+          #sidebar-box:focus-within {
+            width: var(--sidebery-width-expanded) !important;
+            min-width: var(--sidebery-width-expanded) !important;
+            overflow: visible !important;
           }
           
           /* Hide sidebar header for cleaner look */
@@ -177,10 +194,16 @@
             display: none !important;
           }
           
-          /* Style sidebar content for Sidebery */
+          /* Style sidebar content for Sidebery with matching colors */
           #sidebar {
             background-color: var(--zen-bg-secondary) !important;
             border: none !important;
+            transition: opacity var(--sidebery-transition) !important;
+          }
+          
+          /* Fade content when collapsed */
+          #sidebar-box:not(:hover):not(:focus-within) #sidebar {
+            opacity: 0.7 !important;
           }
           
           /* Style sidebar splitter */
@@ -189,6 +212,7 @@
             border: none !important;
             width: 1px !important;
             transition: all 0.2s ease !important;
+            position: relative !important;
           }
           
           #sidebar-splitter:hover {
@@ -197,9 +221,29 @@
             box-shadow: 0 0 8px rgba(0, 120, 212, 0.3) !important;
           }
           
-          /* Hide native sidebar buttons from toolbar (we'll use extension button) */
+          /* Hide native sidebar buttons from toolbar */
           #sidebar-button {
             display: none !important;
+          }
+          
+          /* Add hover indicator for collapsed sidebar */
+          #sidebar-box::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--zen-accent-primary), transparent);
+            opacity: 0;
+            transition: opacity var(--sidebery-transition);
+            border-radius: 0 3px 3px 0;
+            z-index: 1000;
+          }
+          
+          #sidebar-box:not(:hover):not(:focus-within)::before {
+            opacity: 0.6;
           }
           
           /* Main browser area */
@@ -374,10 +418,160 @@
           .webextension-browser-action:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
           }
+          
+          /* Sidebery hover hint when collapsed */
+          #sidebar-box::after {
+            content: "→";
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--zen-text-muted);
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+          }
+          
+          #sidebar-box:not(:hover):not(:focus-within)::after {
+            opacity: 0.7;
+          }
         '';
         
-        # Dark theme for web content
+        # Enhanced userContent to style Sidebery extension content
         userContent = ''
+          /* Sidebery color matching - applies to the extension's UI */
+          @-moz-document url-prefix("moz-extension://") {
+            :root {
+              /* Override Sidebery's CSS variables to match Firefox */
+              --bg: #2d2d2d !important;
+              --bg-2: #3d3d3d !important;
+              --bg-3: #404040 !important;
+              --bg-hover: #404040 !important;
+              --bg-active: #4a4a4a !important;
+              
+              /* Text colors */
+              --title-fg: #ffffff !important;
+              --label-fg: #cccccc !important;
+              --info-fg: #999999 !important;
+              
+              /* Borders */
+              --border: #404040 !important;
+              --border-light: #606060 !important;
+              
+              /* Accent colors */
+              --accent: #0078d4 !important;
+              --accent-hover: #106ebe !important;
+              --accent-active: #005a9e !important;
+              
+              /* Tab colors */
+              --tab-fg: #cccccc !important;
+              --tab-bg: transparent !important;
+              --tab-active-fg: #ffffff !important;
+              --tab-active-bg: #404040 !important;
+              --tab-selected-fg: #ffffff !important;
+              --tab-selected-bg: #0078d4 !important;
+              
+              /* Toolbar colors */
+              --toolbar-bg: #2d2d2d !important;
+              --toolbar-fg: #cccccc !important;
+              
+              /* Button colors */
+              --btn-bg: #3d3d3d !important;
+              --btn-fg: #cccccc !important;
+              --btn-hover-bg: #404040 !important;
+              --btn-hover-fg: #ffffff !important;
+              
+              /* Input colors */
+              --input-bg: #3d3d3d !important;
+              --input-fg: #ffffff !important;
+              --input-border: #404040 !important;
+              --input-focus-border: #0078d4 !important;
+              
+              /* Scrollbar */
+              --scroll-bg: transparent !important;
+              --scroll-thumb: #404040 !important;
+              --scroll-thumb-hover: #606060 !important;
+            }
+            
+            /* Additional Sidebery-specific styling */
+            body {
+              background-color: #2d2d2d !important;
+              color: #ffffff !important;
+            }
+            
+            /* Style tab items */
+            .Tab {
+              background-color: transparent !important;
+              border-radius: 4px !important;
+              margin: 1px 4px !important;
+              transition: all 0.2s ease !important;
+            }
+            
+            .Tab:hover {
+              background-color: #404040 !important;
+            }
+            
+            .Tab.active {
+              background-color: #0078d4 !important;
+              color: #ffffff !important;
+            }
+            
+            /* Style toolbar buttons */
+            .toolbar-btn,
+            .nav-btn {
+              background-color: #3d3d3d !important;
+              border: 1px solid #404040 !important;
+              border-radius: 4px !important;
+              color: #cccccc !important;
+              transition: all 0.2s ease !important;
+            }
+            
+            .toolbar-btn:hover,
+            .nav-btn:hover {
+              background-color: #404040 !important;
+              border-color: #0078d4 !important;
+              color: #ffffff !important;
+            }
+            
+            /* Style search input */
+            .search-input,
+            input[type="text"] {
+              background-color: #3d3d3d !important;
+              border: 1px solid #404040 !important;
+              border-radius: 4px !important;
+              color: #ffffff !important;
+              padding: 4px 8px !important;
+            }
+            
+            .search-input:focus,
+            input[type="text"]:focus {
+              border-color: #0078d4 !important;
+              box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
+            }
+            
+            /* Style panels */
+            .panel {
+              background-color: #2d2d2d !important;
+              border-right: 1px solid #404040 !important;
+            }
+            
+            /* Style scrollbars within Sidebery */
+            ::-webkit-scrollbar {
+              width: 6px !important;
+              background: transparent !important;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+              background: #404040 !important;
+              border-radius: 6px !important;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+              background: #606060 !important;
+            }
+          }
+          
           /* Enhanced dark theme for web content */
           @-moz-document url-prefix("about:") {
             body {
