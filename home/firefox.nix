@@ -88,7 +88,7 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Extentions 
+        # Only uBlock Origin - no Sidebery
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin       # Ad blocking only
         ];
@@ -132,7 +132,7 @@
           };
         };
         
-        # Theme optimized for native vertical tabs
+        # Theme with auto-hide specifically for vertical tabs
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -173,21 +173,26 @@
             margin-bottom: 0 !important;
           }
           
-          /* Style native sidebar for vertical tabs */
+          /* Default sidebar styling (no auto-hide for general sidebar) */
           #sidebar-box {
             background-color: var(--zen-bg-secondary) !important;
             border-right: 1px solid var(--zen-border-light) !important;
+            min-width: 250px !important;
+            position: relative !important;
+          }
+          
+          /* Auto-hide ONLY for vertical tabs panel */
+          #sidebar-box[sidebarcommand="viewTabsSidebar"] {
             min-width: var(--vertical-tabs-collapsed-width) !important;
             width: var(--vertical-tabs-collapsed-width) !important;
             max-width: var(--vertical-tabs-width) !important;
             transition: width var(--vertical-tabs-transition), min-width var(--vertical-tabs-transition) !important;
-            position: relative !important;
             overflow: hidden !important;
           }
           
-          /* Expand on hover */
-          #sidebar-box:hover,
-          #sidebar-box:focus-within {
+          /* Expand vertical tabs on hover */
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]:hover,
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]:focus-within {
             width: var(--vertical-tabs-width) !important;
             min-width: var(--vertical-tabs-width) !important;
             overflow: visible !important;
@@ -207,12 +212,12 @@
             background-color: var(--zen-bg-secondary) !important;
             border: none !important;
             color: var(--zen-text-primary) !important;
-            transition: opacity var(--vertical-tabs-transition) !important;
           }
           
-          /* Fade content when collapsed */
-          #sidebar-box:not(:hover):not(:focus-within) #sidebar {
+          /* Fade content when vertical tabs are collapsed */
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within) #sidebar {
             opacity: 0.8 !important;
+            transition: opacity var(--vertical-tabs-transition) !important;
           }
           
           /* Style sidebar splitter */
@@ -238,7 +243,8 @@
           
           /* Style tab items in vertical sidebar */
           .tab-item,
-          .tab {
+          .tab,
+          .tabbrowser-tab {
             background-color: transparent !important;
             border-radius: 4px !important;
             margin: 2px 4px !important;
@@ -249,7 +255,8 @@
           }
           
           .tab-item:hover,
-          .tab:hover {
+          .tab:hover,
+          .tabbrowser-tab:hover {
             background-color: var(--zen-bg-hover) !important;
             color: var(--zen-text-primary) !important;
             border-color: var(--zen-border-light) !important;
@@ -257,15 +264,16 @@
           
           .tab-item.active,
           .tab.selected,
-          .tab[selected] {
+          .tab[selected],
+          .tabbrowser-tab[selected] {
             background-color: var(--zen-accent-primary) !important;
             color: var(--zen-text-primary) !important;
             border-color: var(--zen-accent-hover) !important;
             box-shadow: 0 2px 6px rgba(0, 120, 212, 0.3) !important;
           }
           
-          /* Add hover indicator for collapsed sidebar */
-          #sidebar-box::before {
+          /* Add hover indicator ONLY for vertical tabs when collapsed */
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]::before {
             content: "";
             position: absolute;
             left: 0;
@@ -280,7 +288,7 @@
             z-index: 1000;
           }
           
-          #sidebar-box:not(:hover):not(:focus-within)::before {
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within)::before {
             opacity: 0.6;
           }
           
@@ -457,8 +465,8 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
           }
           
-          /* Sidebar hint when collapsed */
-          #sidebar-box::after {
+          /* Sidebar hint ONLY for vertical tabs when collapsed */
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]::after {
             content: "→";
             position: absolute;
             right: 8px;
@@ -471,7 +479,7 @@
             pointer-events: none;
           }
           
-          #sidebar-box:not(:hover):not(:focus-within)::after {
+          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within)::after {
             opacity: 0.7;
           }
         '';
