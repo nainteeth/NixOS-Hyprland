@@ -28,21 +28,27 @@
       
       case "$chosen" in
           "🖥️ Full Screen")
+              sleep 0.3
               grimblast --notify copysave screen "$SCREENSHOT_DIR/$(date +'%Y-%m-%d_%H-%M-%S').png"
               ;;
           "📱 Select Area")
+              sleep 0.3
               grimblast --notify copysave area "$SCREENSHOT_DIR/$(date +'%Y-%m-%d_%H-%M-%S').png"
               ;;
           "🪟 Active Window")
+              sleep 0.3
               grimblast --notify copysave active "$SCREENSHOT_DIR/$(date +'%Y-%m-%d_%H-%M-%S').png"
               ;;
           "✏️ Edit Area")
+              sleep 0.3
               grimblast --notify save area - | swappy -f -
               ;;
           "📋 Copy to Clipboard")
+              sleep 0.3
               grimblast --notify copy area
               ;;
           "🎨 Annotate with Satty")
+              sleep 0.3
               grimblast --notify save area - | satty -f -
               ;;
       esac
