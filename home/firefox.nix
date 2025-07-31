@@ -13,7 +13,6 @@
         name = "zen-style";
         isDefault = true;
         
-        # Clean Firefox preferences without vertical tabs experiments
         settings = {
           # Basic interface optimizations
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -21,7 +20,7 @@
           "layout.css.backdrop-filter.enabled" = true;
           "layout.css.color-mix.enabled" = true;
           
-          # Keep horizontal tabs as default
+          # Tab behavior
           "browser.tabs.tabClipWidth" = 83;
           "browser.tabs.animate" = true;
           "browser.tabs.warnOnClose" = false;
@@ -77,7 +76,7 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Just uBlock Origin
+        # Extensions
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
         ];
@@ -120,217 +119,6 @@
             };
           };
         };
-        
-        # Simple, clean dark theme - no sidebar customizations
-        userChrome = ''
-          /* CSS Variables for easy color customization */
-          :root {
-            /* Primary Colors */
-            --zen-bg-primary: #1a1a1a;
-            --zen-bg-secondary: #2d2d2d;
-            --zen-bg-tertiary: #3d3d3d;
-            --zen-bg-hover: #404040;
-            --zen-bg-active: #4a4a4a;
-            
-            /* Text Colors */
-            --zen-text-primary: #ffffff;
-            --zen-text-secondary: #cccccc;
-            --zen-text-muted: #999999;
-            
-            /* Accent Colors */
-            --zen-accent-primary: #0078d4;
-            --zen-accent-hover: #106ebe;
-            --zen-accent-active: #005a9e;
-            
-            /* Border Colors */
-            --zen-border-light: #404040;
-            --zen-border-medium: #606060;
-            --zen-border-dark: #2d2d2d;
-            
-            /* Toolbar height */
-            --zen-toolbar-height: 36px;
-          }
-          
-          /* Main browser area */
-          #browser {
-            background-color: var(--zen-bg-primary) !important;
-          }
-          
-          /* CLEAN THIN TOOLBAR */
-          #nav-bar {
-            background: var(--zen-bg-secondary) !important;
-            border-bottom: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            box-shadow: none !important;
-            padding: 2px 8px !important;
-            height: var(--zen-toolbar-height) !important;
-            min-height: var(--zen-toolbar-height) !important;
-            max-height: var(--zen-toolbar-height) !important;
-            display: flex !important;
-            align-items: center !important;
-          }
-          
-          /* Style the URL bar */
-          #urlbar {
-            background-color: var(--zen-bg-tertiary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
-            transition: all 0.2s ease !important;
-            margin: 0 4px !important;
-            flex: 1 !important;
-            height: 26px !important;
-            min-height: 26px !important;
-          }
-          
-          #urlbar:focus-within {
-            background-color: var(--zen-bg-hover) !important;
-            border-color: var(--zen-accent-primary) !important;
-            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
-          }
-          
-          #urlbar-input {
-            padding: 2px 8px !important;
-            font-size: 13px !important;
-          }
-          
-          #urlbar-input::placeholder {
-            color: var(--zen-text-muted) !important;
-          }
-          
-          /* Style tabs */
-          .tabbrowser-tab {
-            background-color: var(--zen-bg-secondary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            border-radius: 6px 6px 0 0 !important;
-            margin: 0 2px !important;
-            transition: all 0.2s ease !important;
-          }
-          
-          .tabbrowser-tab:hover {
-            background-color: var(--zen-bg-hover) !important;
-          }
-          
-          .tabbrowser-tab[selected] {
-            background-color: var(--zen-bg-primary) !important;
-            border-bottom-color: var(--zen-bg-primary) !important;
-          }
-          
-          .tab-label {
-            color: var(--zen-text-secondary) !important;
-          }
-          
-          .tabbrowser-tab[selected] .tab-label {
-            color: var(--zen-text-primary) !important;
-          }
-          
-          /* Compact button styling */
-          .toolbarbutton-1 {
-            fill: var(--zen-text-secondary) !important;
-            color: var(--zen-text-secondary) !important;
-            border-radius: 4px !important;
-            transition: all 0.2s ease !important;
-            padding: 4px !important;
-            margin: 0 1px !important;
-            min-width: 24px !important;
-            height: 24px !important;
-          }
-          
-          .toolbarbutton-1:hover {
-            background-color: var(--zen-bg-hover) !important;
-            fill: var(--zen-text-primary) !important;
-            color: var(--zen-text-primary) !important;
-          }
-          
-          /* Menu styling */
-          menupopup {
-            background-color: var(--zen-bg-secondary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 8px !important;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-            padding: 4px !important;
-          }
-          
-          menuitem {
-            color: var(--zen-text-primary) !important;
-            border-radius: 4px !important;
-            margin: 2px !important;
-            padding: 6px 10px !important;
-            transition: all 0.15s ease !important;
-            font-size: 13px !important;
-          }
-          
-          menuitem:hover {
-            background-color: var(--zen-bg-hover) !important;
-          }
-          
-          /* Content area */
-          #content {
-            background-color: var(--zen-bg-primary) !important;
-          }
-          
-          /* Remove unnecessary elements */
-          #pageActionButton,
-          #star-button-box,
-          #pocket-button,
-          #fxa-toolbar-menu-button {
-            display: none !important;
-          }
-          
-          /* Ensure toolbar layout is compact */
-          #nav-bar-customization-target {
-            display: flex !important;
-            align-items: center !important;
-            flex: 1 !important;
-            height: 100% !important;
-          }
-          
-          /* Custom animations */
-          @keyframes fadeInUp {
-            from { 
-              transform: translateY(10px); 
-              opacity: 0; 
-            }
-            to { 
-              transform: translateY(0); 
-              opacity: 1; 
-            }
-          }
-          
-          menupopup {
-            animation: fadeInUp 0.2s ease-out !important;
-          }
-          
-          /* Zen-like subtle shadows */
-          #urlbar:focus-within,
-          .toolbarbutton-1:hover,
-          menuitem:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-          }
-        '';
-        
-        # Simple dark theme for web content
-        userContent = ''
-          /* Enhanced dark theme for web content */
-          @-moz-document url-prefix("about:") {
-            body {
-              background-color: var(--zen-bg-primary, #1a1a1a) !important;
-              color: var(--zen-text-primary, #ffffff) !important;
-            }
-          }
-          
-          /* Scrollbar styling for web content */
-          * {
-            scrollbar-width: thin !important;
-            scrollbar-color: #404040 #2d2d2d !important;
-          }
-          
-          /* Zen-like smooth transitions for web elements */
-          a, button, input, select, textarea {
-            transition: all 0.2s ease !important;
-          }
-        '';
         
         # Container tabs for organization
         containers = {
