@@ -13,35 +13,24 @@
         name = "zen-style";
         isDefault = true;
         
-        # Firefox preferences optimized for native vertical tabs
+        # Clean Firefox preferences without vertical tabs experiments
         settings = {
-          # Zen Browser-like interface optimizations
+          # Basic interface optimizations
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "svg.context-properties.content.enabled" = true;
           "layout.css.backdrop-filter.enabled" = true;
           "layout.css.color-mix.enabled" = true;
           
-          # Enable native vertical tabs
-          "sidebar.verticalTabs" = true;
-          "sidebar.revamp" = true;
-          "browser.tabs.inTitlebar" = 0;
-          "browser.tabs.drawInTitlebar" = false;
-          
-          # Tab behavior optimized for vertical layout
-          "browser.tabs.tabmanager.enabled" = true;
-          "browser.tabs.firefox-view" = true;
+          # Keep horizontal tabs as default
           "browser.tabs.tabClipWidth" = 83;
           "browser.tabs.animate" = true;
           "browser.tabs.warnOnClose" = false;
           
-          # Sidebar positioning
-          "sidebar.position_start" = true;
-          
-          # Privacy settings (Zen-like defaults)
+          # Privacy settings
           "privacy.trackingprotection.enabled" = true;
           "privacy.trackingprotection.socialtracking.enabled" = true;
           "privacy.donottrackheader.enabled" = true;
-          "privacy.resistFingerprinting" = false; # Keep false for better theming
+          "privacy.resistFingerprinting" = false;
           
           # Performance optimizations
           "browser.cache.disk.enable" = true;
@@ -50,7 +39,7 @@
           "gfx.webrender.all" = true;
           "media.ffmpeg.vaapi.enabled" = true;
           
-          # UI preferences for clean interface with vertical tabs
+          # UI preferences
           "browser.startup.homepage" = "about:home";
           "browser.newtabpage.enabled" = true;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
@@ -88,9 +77,9 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Only uBlock Origin - no Sidebery
+        # Just uBlock Origin
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin       # Ad blocking only
+          ublock-origin
         ];
         
         # Bookmarks section
@@ -132,7 +121,7 @@
           };
         };
         
-        # Theme with auto-hide specifically for vertical tabs
+        # Simple, clean dark theme - no sidebar customizations
         userChrome = ''
           /* CSS Variables for easy color customization */
           :root {
@@ -160,136 +149,6 @@
             
             /* Toolbar height */
             --zen-toolbar-height: 36px;
-            
-            /* Vertical tabs dimensions */
-            --vertical-tabs-width: 250px;
-            --vertical-tabs-collapsed-width: 48px;
-            --vertical-tabs-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          }
-          
-          /* Hide horizontal tab bar completely */
-          #TabsToolbar {
-            visibility: collapse !important;
-            margin-bottom: 0 !important;
-          }
-          
-          /* Default sidebar styling (no auto-hide for general sidebar) */
-          #sidebar-box {
-            background-color: var(--zen-bg-secondary) !important;
-            border-right: 1px solid var(--zen-border-light) !important;
-            min-width: 250px !important;
-            position: relative !important;
-          }
-          
-          /* Auto-hide ONLY for vertical tabs panel */
-          #sidebar-box[sidebarcommand="viewTabsSidebar"] {
-            min-width: var(--vertical-tabs-collapsed-width) !important;
-            width: var(--vertical-tabs-collapsed-width) !important;
-            max-width: var(--vertical-tabs-width) !important;
-            transition: width var(--vertical-tabs-transition), min-width var(--vertical-tabs-transition) !important;
-            overflow: hidden !important;
-          }
-          
-          /* Expand vertical tabs on hover */
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]:hover,
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]:focus-within {
-            width: var(--vertical-tabs-width) !important;
-            min-width: var(--vertical-tabs-width) !important;
-            overflow: visible !important;
-          }
-          
-          /* Style sidebar header */
-          #sidebar-header {
-            background-color: var(--zen-bg-secondary) !important;
-            border-bottom: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            padding: 4px 8px !important;
-            min-height: 32px !important;
-          }
-          
-          /* Style sidebar content */
-          #sidebar {
-            background-color: var(--zen-bg-secondary) !important;
-            border: none !important;
-            color: var(--zen-text-primary) !important;
-          }
-          
-          /* Fade content when vertical tabs are collapsed */
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within) #sidebar {
-            opacity: 0.8 !important;
-            transition: opacity var(--vertical-tabs-transition) !important;
-          }
-          
-          /* Style sidebar splitter */
-          #sidebar-splitter {
-            background-color: var(--zen-border-light) !important;
-            border: none !important;
-            width: 1px !important;
-            transition: all 0.2s ease !important;
-            position: relative !important;
-          }
-          
-          #sidebar-splitter:hover {
-            background-color: var(--zen-accent-primary) !important;
-            width: 3px !important;
-            box-shadow: 0 0 8px rgba(0, 120, 212, 0.3) !important;
-          }
-          
-          /* Style native vertical tabs */
-          .sidebar-panel[data-panel="tabs"] {
-            background-color: var(--zen-bg-secondary) !important;
-            color: var(--zen-text-primary) !important;
-          }
-          
-          /* Style tab items in vertical sidebar */
-          .tab-item,
-          .tab,
-          .tabbrowser-tab {
-            background-color: transparent !important;
-            border-radius: 4px !important;
-            margin: 2px 4px !important;
-            padding: 8px !important;
-            transition: all 0.2s ease !important;
-            color: var(--zen-text-secondary) !important;
-            border: 1px solid transparent !important;
-          }
-          
-          .tab-item:hover,
-          .tab:hover,
-          .tabbrowser-tab:hover {
-            background-color: var(--zen-bg-hover) !important;
-            color: var(--zen-text-primary) !important;
-            border-color: var(--zen-border-light) !important;
-          }
-          
-          .tab-item.active,
-          .tab.selected,
-          .tab[selected],
-          .tabbrowser-tab[selected] {
-            background-color: var(--zen-accent-primary) !important;
-            color: var(--zen-text-primary) !important;
-            border-color: var(--zen-accent-hover) !important;
-            box-shadow: 0 2px 6px rgba(0, 120, 212, 0.3) !important;
-          }
-          
-          /* Add hover indicator ONLY for vertical tabs when collapsed */
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--zen-accent-primary), transparent);
-            opacity: 0;
-            transition: opacity var(--vertical-tabs-transition);
-            border-radius: 0 3px 3px 0;
-            z-index: 1000;
-          }
-          
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within)::before {
-            opacity: 0.6;
           }
           
           /* Main browser area */
@@ -311,7 +170,7 @@
             align-items: center !important;
           }
           
-          /* Style the URL bar for thin toolbar */
+          /* Style the URL bar */
           #urlbar {
             background-color: var(--zen-bg-tertiary) !important;
             border: 1px solid var(--zen-border-light) !important;
@@ -339,6 +198,32 @@
             color: var(--zen-text-muted) !important;
           }
           
+          /* Style tabs */
+          .tabbrowser-tab {
+            background-color: var(--zen-bg-secondary) !important;
+            border: 1px solid var(--zen-border-light) !important;
+            border-radius: 6px 6px 0 0 !important;
+            margin: 0 2px !important;
+            transition: all 0.2s ease !important;
+          }
+          
+          .tabbrowser-tab:hover {
+            background-color: var(--zen-bg-hover) !important;
+          }
+          
+          .tabbrowser-tab[selected] {
+            background-color: var(--zen-bg-primary) !important;
+            border-bottom-color: var(--zen-bg-primary) !important;
+          }
+          
+          .tab-label {
+            color: var(--zen-text-secondary) !important;
+          }
+          
+          .tabbrowser-tab[selected] .tab-label {
+            color: var(--zen-text-primary) !important;
+          }
+          
           /* Compact button styling */
           .toolbarbutton-1 {
             fill: var(--zen-text-secondary) !important;
@@ -355,21 +240,6 @@
             background-color: var(--zen-bg-hover) !important;
             fill: var(--zen-text-primary) !important;
             color: var(--zen-text-primary) !important;
-          }
-          
-          /* Style sidebar toggle button in toolbar */
-          #sidebar-button {
-            background-color: var(--zen-bg-tertiary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            border-radius: 4px !important;
-            transition: all 0.2s ease !important;
-          }
-          
-          #sidebar-button:hover {
-            background-color: var(--zen-bg-hover) !important;
-            border-color: var(--zen-accent-primary) !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
           }
           
           /* Menu styling */
@@ -393,31 +263,6 @@
           
           menuitem:hover {
             background-color: var(--zen-bg-hover) !important;
-          }
-          
-          /* Scrollbar styling */
-          scrollbar {
-            background-color: transparent !important;
-            width: 6px !important;
-          }
-          
-          scrollbar thumb {
-            background-color: var(--zen-bg-hover) !important;
-            border-radius: 6px !important;
-            transition: background-color 0.2s ease !important;
-          }
-          
-          scrollbar thumb:hover {
-            background-color: var(--zen-border-medium) !important;
-          }
-          
-          /* Status panel */
-          #statuspanel {
-            background-color: var(--zen-bg-secondary) !important;
-            border: 1px solid var(--zen-border-light) !important;
-            color: var(--zen-text-primary) !important;
-            border-radius: 6px !important;
-            backdrop-filter: blur(10px) !important;
           }
           
           /* Content area */
@@ -460,31 +305,12 @@
           /* Zen-like subtle shadows */
           #urlbar:focus-within,
           .toolbarbutton-1:hover,
-          menuitem:hover,
-          #sidebar-button:hover {
+          menuitem:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-          }
-          
-          /* Sidebar hint ONLY for vertical tabs when collapsed */
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]::after {
-            content: "→";
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--zen-text-muted);
-            font-size: 16px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-          }
-          
-          #sidebar-box[sidebarcommand="viewTabsSidebar"]:not(:hover):not(:focus-within)::after {
-            opacity: 0.7;
           }
         '';
         
-        # Clean userContent without Sidebery-specific styling
+        # Simple dark theme for web content
         userContent = ''
           /* Enhanced dark theme for web content */
           @-moz-document url-prefix("about:") {
@@ -532,7 +358,7 @@
       };
     };
     
-    # Enterprise policies for enhanced privacy and Zen-like defaults
+    # Enterprise policies for enhanced privacy
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
