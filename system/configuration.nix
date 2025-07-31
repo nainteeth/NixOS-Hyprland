@@ -103,7 +103,7 @@
   };
   
   # Make sure Hyprland session is available
-  services.displayManager.sessionPackages = [ ... ];
+  services.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Sudo with no password
   security.sudo.wheelNeedsPassword = lib.mkForce false;
 
