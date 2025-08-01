@@ -11,7 +11,7 @@
   "opacity 0.85 override, class:^(thunar)$"
   "opacity 0.85 override, class:^(waypaper)$"
   "opacity 0.9 override, class:^(signal)$"
-  "opacity 0.85 override, class:^(spotify)$"
+  "opacity 0.9 override, class:^(spotify)$"
 
   # Ignore maximize requests from apps.
   "suppressevent maximize, class:.*"
