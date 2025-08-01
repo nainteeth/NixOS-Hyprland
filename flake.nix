@@ -3,19 +3,23 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur.url = "github:nix-community/NUR";
-    
-    # Add nix-flatpak for declarative Flatpak management
+
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, spicetify-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -36,19 +40,18 @@
               users.nainteeth = import ./home/home.nix;
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
-              # Pass inputs to home-manager for nix-flatpak
-              extraSpecialArgs = { inherit inputs nix-flatpak; };
+              # Pass all inputs to home-manager including spicetify-nix
+              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix; };
             };
             # Set hostname for each system
             networking.hostName = hostname;
           }
-	    # NUR - FIXED: use overlays.default instead of overlay
           ({ pkgs, ... }: {
             nixpkgs.overlays = [ nur.overlays.default ];
           })
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nur nix-flatpak; };
+        specialArgs = { inherit inputs nur nix-flatpak spicetify-nix; };
       };
     in
     {

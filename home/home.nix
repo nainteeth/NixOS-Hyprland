@@ -21,5 +21,6 @@
     ./screenshot.nix
     ./firefox.nix
     ./flatpak.nix
+    ./spicetify.nix
   ];
 }

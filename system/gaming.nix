@@ -28,8 +28,10 @@
     mangohud
     gamescope
     lutris
-    pkgs.osu-lazer-bin
+    osu-lazer-bin
     vulkan-tools
     vulkan-validation-layers
+    umu-launcher
+    heroic
   ];
 }
