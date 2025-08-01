@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware.nix
+    ./hardware-configuration.nix
     ./desktop.nix
     ./system.nix
     ./packages.nix

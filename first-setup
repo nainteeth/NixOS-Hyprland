@@ -1,0 +1,14 @@
+#!/run/current-system/sw/bin/bash
+## Script to move some files and generate hardware config
+
+set -eu
+set -x
+
+cd $HOME/nixos-config
+
+mv $HOME/nixos-config/bin $HOME
+
+nixos-generate-config --root /mnt --dir /tmp/nixos-config
+mv /tmp/nixos-config/hardware-configuration.nix $HOME/nixos-config/system
+
+cat $HOME/nixos-config/system/hardware-configuration.nix
