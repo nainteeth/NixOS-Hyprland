@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  # Get the current hostname
-  hostname = config.networking.hostName or (builtins.readFile /etc/hostname);
+  # Get the current hostname - strip any whitespace/newlines
+  hostname = lib.strings.removeSuffix "\n" (builtins.readFile /etc/hostname);
   
   # Define monitor configurations for different machines
   monitorConfigs = {
@@ -13,7 +13,7 @@ let
     ];
     
     # Laptop configuration
-    "laptop" = [
+    "Laptop" = [
       ",preferred,auto,1"              # Auto-detect and use preferred resolution
     ];
     
@@ -31,8 +31,9 @@ in {
     settings = {
       monitor = currentMonitorConfig;
       
-      # Optional: Add some sensible defaults for multi-monitor setups
-      workspace = lib.mkIf (hostname == "gaming-pc") [
+      # Optional: Add workspace assignments for gaming PC
+    } // lib.optionalAttrs (hostname == "gaming-pc") {
+      workspace = [
         "1, monitor:DP-1, default:true"
         "2, monitor:DP-1"
         "3, monitor:DP-1"
@@ -50,7 +51,6 @@ in {
   # Optional: Debug output to see which config is being used
   home.file.".config/hyprland/monitor-debug.txt".text = ''
     Current hostname: ${hostname}
-    Monitor configuration: ${builtins.toJSON currentMonitorConfig}
-    Available configurations: ${builtins.toJSON (builtins.attrNames monitorConfigs)}
+    Monitor configuration: ${lib.concatStringsSep ", " currentMonitorConfig}
   '';
 }
