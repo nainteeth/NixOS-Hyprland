@@ -30,16 +30,6 @@
   
   services.displayManager.sessionPackages = [ pkgs.hyprland ];
 
-  # XDG Desktop Portal for Wayland
-  xdg.portal = { 
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   # Security
   security.polkit.enable = true;
 
