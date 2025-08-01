@@ -29,8 +29,6 @@
         modules = [
           # Use existing system configuration
           ./system/configuration.nix
-          # Host-specific hardware configuration
-          ./system/hardware-configuration-${hostname}.nix
           # Home Manager integration
           home-manager.nixosModules.home-manager
           {
@@ -40,7 +38,7 @@
               users.nainteeth = import ./home/home.nix;
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
-              # Pass all inputs to home-manager including spicetify-nix
+              # Pass all inputs to home-manager
               extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix; };
             };
             # Set hostname for each system
@@ -56,10 +54,8 @@
     in
     {
       nixosConfigurations = {
-        # Your existing laptop
         laptop = mkSystem "laptop" [];
         
-        # New gaming PC configuration
         gaming-pc = mkSystem "gaming-pc" [
           # Gaming-specific configuration
           ./system/gaming.nix
