@@ -1,8 +1,7 @@
-{ config, lib, pkgs, ... }:
-
+# monitors.nix - Returns monitor configuration based on hostname
 let
   # Get the current hostname - strip any whitespace/newlines
-  hostname = lib.strings.removeSuffix "\n" (builtins.readFile /etc/hostname);
+  hostname = builtins.replaceStrings ["\n"] [""] (builtins.readFile /etc/hostname);
   
   # Define monitor configurations for different machines
   monitorConfigs = {
@@ -23,34 +22,6 @@ let
     ];
   };
   
-  # Get the appropriate monitor config for current hostname
-  currentMonitorConfig = monitorConfigs.${hostname} or monitorConfigs.default;
-  
-in {
-  wayland.windowManager.hyprland = {
-    settings = {
-      monitor = currentMonitorConfig;
-      
-      # Optional: Add workspace assignments for gaming PC
-    } // lib.optionalAttrs (hostname == "gaming-pc") {
-      workspace = [
-        "1, monitor:DP-1, default:true"
-        "2, monitor:DP-1"
-        "3, monitor:DP-1"
-        "4, monitor:DP-1"
-        "5, monitor:DP-1"
-        "6, monitor:DP-2"
-        "7, monitor:DP-2"
-        "8, monitor:DP-2"
-        "9, monitor:DP-2"
-        "10, monitor:DP-2"
-      ];
-    };
-  };
-  
-  # Optional: Debug output to see which config is being used
-  home.file.".config/hyprland/monitor-debug.txt".text = ''
-    Current hostname: ${hostname}
-    Monitor configuration: ${lib.concatStringsSep ", " currentMonitorConfig}
-  '';
-}
+in
+# Return the appropriate monitor config for current hostname
+monitorConfigs.${hostname} or monitorConfigs.default
