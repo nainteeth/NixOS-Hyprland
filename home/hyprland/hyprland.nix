@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 let
   # Define variables used in your Hyprland config
@@ -12,10 +12,7 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    
-    # Use the Hyprland package from inputs (this ensures we get the flake version)
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    
+
     # Enable XWayland for compatibility with X11 applications
     xwayland.enable = true;
 
@@ -35,7 +32,7 @@ in
       bind = import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; };
       windowrule = import ./windowrules.nix;
       exec-once = import ./autostart.nix;
-      plugin = import ./plugins.nix { inherit inputs pkgs; };
     };
   };
 }
+# Mal hoffen dass es klappt

@@ -9,14 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    # Optional: Add hyprland-plugins if you want popular plugins
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +19,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, nur, nix-flatpak, spicetify-nix, hyprland-plugins, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, spicetify-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -39,7 +31,6 @@
           ./system/configuration.nix
           # Host-specific hardware configuration
           ./system/hardware-configuration-${hostname}.nix
-
           # Home Manager integration
           home-manager.nixosModules.home-manager
           {
@@ -49,30 +40,18 @@
               users.nainteeth = import ./home/home.nix;
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
-              # Pass all inputs to home-manager including spicetify-nix and hyprland
-              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix hyprland hyprland-plugins; };
+              # Pass all inputs to home-manager including spicetify-nix
+              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix; };
             };
             # Set hostname for each system
             networking.hostName = hostname;
           }
-
-          # Add nur
           ({ pkgs, ... }: {
             nixpkgs.overlays = [ nur.overlays.default ];
           })
-
-          # Enable Hyprland at system level (this enables the NixOS module)
-          {
-            programs.hyprland = {
-              enable = true;
-              package = inputs.hyprland.packages.${system}.hyprland;
-              portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-            };
-          }
-
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nur nix-flatpak spicetify-nix hyprland hyprland-plugins; };
+        specialArgs = { inherit inputs nur nix-flatpak spicetify-nix; };
       };
     in
     {

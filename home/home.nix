@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 {
   home.username = "nainteeth";
   home.homeDirectory = "/home/nainteeth";
@@ -23,7 +23,4 @@
     ./flatpak.nix
     ./spicetify.nix
   ];
-  
-  # Make sure inputs are available to all imported modules
-  _module.args = { inherit inputs; };
 }
