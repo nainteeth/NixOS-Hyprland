@@ -27,11 +27,6 @@
         betterGenres
       ];
 
-     # Hide stupid bugging Picture-in-Picture button
-      enabledSnippets = [
-        "button[aria-label='Picture in picture'] { display: none !important; }"
-      ];
-
       # Custom apps
       enabledCustomApps = with spicePkgs.apps; [
         lyricsPlus
