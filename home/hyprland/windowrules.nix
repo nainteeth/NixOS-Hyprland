@@ -1,6 +1,7 @@
 [
   "float,class:^(org.pulseaudio.pavucontrol)$"
   "float,class:^(nm-connection-editor)$"
+  "float,class:^(spotify)$,title:^(Picture in picture)$"
 
   # wofi bugfix
   "noshadow,class:^(wofi)$"
