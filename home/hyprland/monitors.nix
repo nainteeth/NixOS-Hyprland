@@ -1,9 +1,7 @@
 # monitors.nix - Returns monitor configuration based on hostname
-{ config, ... }:
-
 let
-  # Get hostname from NixOS configuration
-  hostname = config.networking.hostName;
+  # Get hostname from environment variable (set by the system)
+  hostname = builtins.getEnv "HOSTNAME";
   
   # Define monitor configurations for different machines
   monitorConfigs = {
