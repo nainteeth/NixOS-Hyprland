@@ -11,7 +11,6 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    # Optional: Add hyprland-plugins if you want popular plugins
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
