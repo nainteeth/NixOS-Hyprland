@@ -10,7 +10,7 @@
     ./packages.nix
     ./session-variables.nix
     ./dconf-settings.nix
-    #./xdg-portal.nix
+    ./xdg-portal.nix
     ./qt.nix
     ./gtk.nix
     ./waybar.nix
