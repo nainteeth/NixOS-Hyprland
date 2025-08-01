@@ -5,11 +5,6 @@
     spicetify-nix.homeManagerModules.default
   ];
 
-  # Allow spotify to be installed (unfree package)
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "spotify"
-  ];
-
   # Spicetify configuration
   programs.spicetify =
     let
@@ -30,6 +25,11 @@
         goToSong
         copyToClipboard
         betterGenres
+      ];
+
+     # Hide stupid bugging Picture-in-Picture button
+      enabledSnippets = [
+        "button[aria-label='Picture in picture'] { display: none !important; }"
       ];
 
       # Custom apps
