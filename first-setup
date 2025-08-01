@@ -6,9 +6,9 @@ set -x
 
 cd $HOME/nixos-config
 
-mv $HOME/nixos-config/bin $HOME
+cp -r $HOME/nixos-config/bin $HOME
 
-nixos-generate-config --root /mnt --dir /tmp/nixos-config
+sudo nixos-generate-config --dir /tmp/nixos-config
 mv /tmp/nixos-config/hardware-configuration.nix $HOME/nixos-config/system
 
 cat $HOME/nixos-config/system/hardware-configuration.nix
