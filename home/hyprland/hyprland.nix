@@ -13,6 +13,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     
+    # Use the Hyprland package from inputs (this ensures we get the flake version)
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     
     # Enable XWayland for compatibility with X11 applications
