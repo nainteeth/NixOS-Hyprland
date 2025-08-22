@@ -4,12 +4,16 @@
 set -eu
 set -x
 
-cd $HOME/nixos-config
+mv ~/NixOS-Hyprland ¨/nixos-config
+cd ~/nixos-config
 
-cp -r $HOME/nixos-config/bin $HOME
-cp $HOME/nixos-config/blue-mountain.jpg $HOME/Bilder/wallpaper
+cp -r ~/nixos-config/bin ~
+
+mkdir ~/Bilder
+mkdir ~/Bilder/wallpaper
+cp ~/nixos-config/blue-mountain.jpg ~/Bilder/wallpaper
 
 sudo nixos-generate-config --dir /tmp/nixos-config
-mv /tmp/nixos-config/hardware-configuration.nix $HOME/nixos-config/system
+sudo mv /tmp/nixos-config/hardware-configuration.nix ~/nixos-config/system
 
-cat $HOME/nixos-config/system/hardware-configuration.nix
+cat ~/nixos-config/system/hardware-configuration.nix
