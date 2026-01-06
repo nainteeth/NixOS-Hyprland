@@ -76,11 +76,6 @@
           "dom.security.https_only_mode" = true;
         };
         
-        # Extensions
-        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-        ];
-        
         # Bookmarks section
         bookmarks = {
           force = true;

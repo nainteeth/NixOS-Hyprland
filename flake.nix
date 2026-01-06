@@ -14,12 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur.url = "github:nix-community/NUR";
-
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nix-flatpak, spicetify-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, spicetify-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -44,12 +42,9 @@
             # Set hostname for each system
             networking.hostName = hostname;
           }
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [ nur.overlays.default ];
-          })
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nur nix-flatpak spicetify-nix; };
+        specialArgs = { inherit inputs nix-flatpak spicetify-nix; };
       };
     in
     {
