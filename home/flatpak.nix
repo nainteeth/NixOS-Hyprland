@@ -7,10 +7,10 @@
 
   services.flatpak = {
     enable = true;
+    uninstallUnmanaged = true;
     
     packages = [
       "com.discordapp.Discord"
-      # Add other Flatpak packages here if needed
       # "org.signal.Signal"
       # "com.spotify.Client"
     ];

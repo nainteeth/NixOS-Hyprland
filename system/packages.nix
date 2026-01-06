@@ -27,8 +27,8 @@
     # Wayland/Hyprland specific
     nwg-dock-hyprland # Switch this to a home manager module to add css customization
     nwg-look
-    hyprpaper
     waypaper
+    swww
 
     # System utilities
     fastfetch
@@ -36,6 +36,7 @@
     adwaita-icon-theme
     networkmanagerapplet
     mako
+    gnumake
 
     # Applications
     keepassxc
