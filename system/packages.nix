@@ -42,6 +42,7 @@
     keepassxc
     signal-desktop
     spotify
+    wootility
 
     # Theming
     catppuccin-sddm

@@ -28,4 +28,12 @@
   services.udisks2.enable = true;        # Disk management
   services.devmon.enable = true;         # Device monitoring
   services.tumbler.enable = true;        # Thumbnails
+
+  hardware.opentabletdriver.enable = true;
+	hardware.wooting.enable = true;
+	# udev rules für Wooting 60HE
+	services.udev.extraRules = ''
+  SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", MODE="0666", GROUP="input"
+  SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", MODE="0666", GROUP="input"
+  '';
 }
