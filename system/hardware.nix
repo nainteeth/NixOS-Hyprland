@@ -30,6 +30,7 @@
   services.tumbler.enable = true;        # Thumbnails
 
   hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
 	hardware.wooting.enable = true;
 	# udev rules für Wooting 60HE
 	services.udev.extraRules = ''
