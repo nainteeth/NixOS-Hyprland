@@ -3,7 +3,7 @@
 [
   "${mainMod}, RETURN, exec, ${terminal}"
   "${mainMod}, Q, killactive,"
-  "${mainMod}, M, exit,"
+  "${mainMod} SHIFT, E, exit,"
   "${mainMod}, E, exec, ${fileManager}"
   "${mainMod}, V, togglefloating,"
   "${mainMod}, SPACE, exec, ${menu}"
