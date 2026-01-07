@@ -1,4 +1,4 @@
-{ pkgs, zen-browser, inputs, system, ... }:
+{ pkgs, zen-browser, inputs, ... }:
 
 {
   imports = [
@@ -83,7 +83,7 @@
   # Set Zen-Browser as default
    xdg.mimeApps = let
     value = let
-      zen-browser = inputs.zen-browser.packages.${system}.default;
+      zen-browser = inputs.zen-browser.packages.${pkgs.system}.default;
     in
       zen-browser.meta.desktopFileName;
 
