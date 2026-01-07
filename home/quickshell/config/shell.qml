@@ -1,7 +1,7 @@
 import Quickshell
 import QtQuick
 
-Panel Window {
+PanelWindow {
   anchors {
     top: true
     left: true
