@@ -19,18 +19,10 @@
       
       # Extensions
       enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        autoSkipVideo
-        skipStats
-        goToSong
-        copyToClipboard
-        betterGenres
       ];
 
       # Custom apps
       enabledCustomApps = with spicePkgs.apps; [
-        lyricsPlus
-        newReleases
       ];
 
       # Optional: Custom color scheme override
