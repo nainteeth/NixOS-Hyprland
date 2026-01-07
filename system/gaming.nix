@@ -26,7 +26,6 @@
     mangohud
     gamescope
     lutris
-    osu-lazer-bin
     vulkan-tools
     vulkan-validation-layers
     umu-launcher
