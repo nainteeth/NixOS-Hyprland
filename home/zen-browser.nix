@@ -1,4 +1,4 @@
-{ pkgs, zen-browser, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -7,108 +7,104 @@
 
   programs.zen-browser = {
     enable = true;
+    # Ensure the package is explicitly set to avoid undefined variable errors
+    package = inputs.zen-browser.packages.${pkgs.system}.default;
     
-    profiles = {
-      default = {
-        id = 0;
-        name = "default";
-        isDefault = true;
+    profiles.default = {
+      id = 0;
+      name = "default";
+      isDefault = true;
+      
+      settings = {
+        "zen.urlbar.replace-newtab" = false;
+        "browser.startup.homepage" = "about:home";
+        "browser.newtabpage.enabled" = true;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.urlbar.suggest.searches" = true;
+        "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+        "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
         
-        settings = {
-          "zen.urlbar.replace-newtab" = false;
-          "browser.startup.homepage" = "about:home";
-          "browser.newtabpage.enabled" = true;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-          "browser.newtabpage.activity-stream.showSponsored" = false;
-          "browser.urlbar.suggest.searches" = true;
-          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
-          # Disable telemetry
-          "datareporting.healthreport.uploadEnabled" = false;
-          "datareporting.policy.dataSubmissionEnabled" = false;
-          "toolkit.telemetry.enabled" = false;
-          "toolkit.telemetry.unified" = false;
-          "toolkit.telemetry.server" = "";
-        };
-        
-        bookmarks = {
-          force = true;
-          settings = [
-            {
-              name = "Nix sites";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "homepage";
-                  url = "https://nixos.org/";
-                }
-                {
-                  name = "wiki";
-                  tags = ["wiki" "nix"];
-                  url = "https://wiki.nixos.org/";
-                }
-              ];
-            }
-          ];
-        };
-        
-        # Search engines
-        search = {
-          force = true; # Needed for nix to overwrite search settings on rebuild
-          default = "ddg"; # Aliased to duckduckgo, see other aliases in the link above
-          engines = {
-            # My nixos Option and package search shortcut
-            mynixos = {
-              name = "My NixOS";
-              urls = [
-              {
-                template = "https://mynixos.com/search?q={searchTerms}";
-                params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
-                ];
-              }
-              ];
+        # Telemetry
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.server" = "";
 
+        # Zen UI specifics
+        "zen.view.use-multiple-toolbars" = true;
+        "zen.view.sidebar.show-essentials" = false;
+        "zen.view.show-pinned-tabs" = false;
+
+        # New Tab Shortcuts
+        "browser.newtabpage.activity-stream.default.sites" = "https://github.com,https://nixos.org,https://reddit.com";
+
+        # Toolbar layout
+        "browser.uiCustomization.state" = builtins.toJSON {
+          placements = {
+            "nav-bar" = [
+              "zoom-controls"
+              "history-panelmenu"
+              "back-button"
+              "forward-button"
+              "stop-reload-button"
+              "urlbar-container"
+              "downloads-button"
+              "unified-extensions-button"
+            ];
+            "toolbar-menubar" = [ "menubar-items" ];
+            "PersonalToolbar" = [ "personal-bookmarks" ];
+          };
+          seen = [ "zoom-controls" "history-panelmenu" "developer-button" ];
+          dirtyAreaCache = [ "nav-bar" "PersonalToolbar" "TabsToolbar" ];
+          currentVersion = 20;
+          newElementCount = 4;
+        };
+      };
+      
+      bookmarks = [
+        {
+          name = "Nix sites";
+          toolbar = true;
+          bookmarks = [
+            { name = "homepage"; url = "https://nixos.org/"; }
+            { name = "wiki"; tags = ["wiki" "nix"]; url = "https://wiki.nixos.org/"; }
+          ];
+        }
+      ];
+
+      search = {
+        force = true;
+        default = "DuckDuckGo";
+        engines = {
+          "My NixOS" = {
+            urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@nx"]; # Keep in mind that aliases defined here only work if they start with "@"
-            };
+            definedAliases = ["@nx"];
           };
         };
       };
     };
   };
 
-  # Set Zen-Browser as default
-   xdg.mimeApps = let
-    value = let
-      zen-browser = inputs.zen-browser.packages.${pkgs.system}.default;
-    in
-      zen-browser.meta.desktopFileName;
-
-    associations = builtins.listToAttrs (map (name: {
-        inherit name value;
-      }) [
-        "application/x-extension-shtml"
-        "application/x-extension-xhtml"
-        "application/x-extension-html"
-        "application/x-extension-xht"
-        "application/x-extension-htm"
-        "x-scheme-handler/unknown"
-        "x-scheme-handler/mailto"
-        "x-scheme-handler/chrome"
-        "x-scheme-handler/about"
-        "x-scheme-handler/https"
-        "x-scheme-handler/http"
-        "application/xhtml+xml"
-        "application/json"
-        "text/plain"
-        "text/html"
-      ]);
-  in {
-    associations.added = associations;
-    defaultApplications = associations;
+  # This must be outside the programs.zen-browser block
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = let
+      desktopFile = "zen.desktop"; 
+    in {
+      "text/html" = desktopFile;
+      "x-scheme-handler/http" = desktopFile;
+      "x-scheme-handler/https" = desktopFile;
+      "x-scheme-handler/about" = desktopFile;
+      "x-scheme-handler/unknown" = desktopFile;
+      "application/xhtml+xml" = desktopFile;
+      "application/x-extension-htm" = desktopFile;
+      "application/x-extension-html" = desktopFile;
+      "application/x-extension-shtml" = desktopFile;
+      "application/x-extension-xhtml" = desktopFile;
+      "application/x-extension-xht" = desktopFile;
+    };
   };
 }
