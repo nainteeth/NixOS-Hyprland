@@ -5,7 +5,7 @@ let
   terminal = "kitty";
   fileManager = "thunar";
   menu = "wofi --show drun";
-  browser = "zen";
+  browser = "zen-beta";
   mainMod = "SUPER";
 
 in
