@@ -15,6 +15,7 @@
         isDefault = true;
         
         settings = {
+          "zen.urlbar.replace-newtab" = false;
           "browser.startup.homepage" = "about:home";
           "browser.newtabpage.enabled" = true;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
