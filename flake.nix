@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +22,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, spicetify-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, spicetify-nix, zen-browser, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -37,14 +42,14 @@
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
               # Pass all inputs to home-manager
-              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix; };
+              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser; };
             };
             # Set hostname for each system
             networking.hostName = hostname;
           }
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nix-flatpak spicetify-nix; };
+        specialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser; };
       };
     in
     {

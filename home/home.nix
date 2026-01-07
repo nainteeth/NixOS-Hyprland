@@ -22,5 +22,6 @@
     ./firefox.nix
     ./flatpak.nix
     ./spicetify.nix
+    ./zen-browser.nix
   ];
 }
