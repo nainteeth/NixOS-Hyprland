@@ -12,5 +12,6 @@
     adwaita-icon-theme
     hyprcursor
     hyprpaper
+    zathura
   ];
 }
