@@ -4,7 +4,7 @@
   users.users.nainteeth = {
     isNormalUser = true;
     description = "nainteeth";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "storage" ];
     packages = with pkgs; [
       # User-specific packages go here
     ];
