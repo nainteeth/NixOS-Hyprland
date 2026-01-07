@@ -2,6 +2,6 @@
 {
   programs.quickshell = {
     enable = true;
-    activeConfig = "./config";
+    activeConfig = "~/nixos/home/quickshell/config";
   };
 }
