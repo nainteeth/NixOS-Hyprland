@@ -11,6 +11,7 @@
     
     packages = [
       "com.discordapp.Discord"
+      "sh.ppy.osu"
       # "org.signal.Signal"
       # "com.spotify.Client"
     ];
