@@ -23,14 +23,6 @@
   # Printing
   services.printing.enable = true;
 
-  # File system services
-  services.gvfs.enable = true;           # Auto-mounting, network drives
-  services.udisks2.enable = true;        # Disk management
-  services.devmon.enable = true;         # Device monitoring
-  services.tumbler.enable = true;        # Thumbnails
-
-  security.polkit.enable = true;
-
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
 	hardware.wooting.enable = true;
