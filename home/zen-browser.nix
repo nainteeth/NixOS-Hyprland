@@ -1,4 +1,4 @@
-{ pkgs, zen-browser, inputs, ... }:
+{ pkgs, zen-browser, inputs, system, ... }:
 
 {
   imports = [
@@ -14,7 +14,6 @@
         name = "default";
         isDefault = true;
         
-        # All your Firefox settings work here!
         settings = {
           "browser.startup.homepage" = "about:home";
           "browser.newtabpage.enabled" = true;
@@ -31,45 +30,84 @@
           "toolkit.telemetry.server" = "";
         };
         
-        # Bookmarks work the same way
         bookmarks = {
           force = true;
           settings = [
-            # Your bookmarks here
+            {
+              name = "Nix sites";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "homepage";
+                  url = "https://nixos.org/";
+                }
+                {
+                  name = "wiki";
+                  tags = ["wiki" "nix"];
+                  url = "https://wiki.nixos.org/";
+                }
+              ];
+            }
           ];
         };
         
         # Search engines
         search = {
-          force = true;
-          default = "ddg";
+          force = true; # Needed for nix to overwrite search settings on rebuild
+          default = "ddg"; # Aliased to duckduckgo, see other aliases in the link above
           engines = {
-            "Nix Packages" = {
-              urls = [{
-                template = "https://search.nixos.org/packages";
+            # My nixos Option and package search shortcut
+            mynixos = {
+              name = "My NixOS";
+              urls = [
+              {
+                template = "https://mynixos.com/search?q={searchTerms}";
                 params = [
-                  { name = "type"; value = "packages"; }
-                  { name = "query"; value = "{searchTerms}"; }
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
                 ];
-              }];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
-            };
-            
-            "NixOS Wiki" = {
-              urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-              icon = "https://nixos.wiki/favicon.png";
-              definedAliases = [ "@nw" ];
-            };
-            
-            "GitHub" = {
-              urls = [{ template = "https://github.com/search?q={searchTerms}"; }];
-              icon = "https://github.com/favicon.ico";
-              definedAliases = [ "@gh" ];
+              }
+              ];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nx"]; # Keep in mind that aliases defined here only work if they start with "@"
             };
           };
         };
       };
     };
+  };
+
+  # Set Zen-Browser as default
+   xdg.mimeApps = let
+    value = let
+      zen-browser = inputs.zen-browser.packages.${system}.default;
+    in
+      zen-browser.meta.desktopFileName;
+
+    associations = builtins.listToAttrs (map (name: {
+        inherit name value;
+      }) [
+        "application/x-extension-shtml"
+        "application/x-extension-xhtml"
+        "application/x-extension-html"
+        "application/x-extension-xht"
+        "application/x-extension-htm"
+        "x-scheme-handler/unknown"
+        "x-scheme-handler/mailto"
+        "x-scheme-handler/chrome"
+        "x-scheme-handler/about"
+        "x-scheme-handler/https"
+        "x-scheme-handler/http"
+        "application/xhtml+xml"
+        "application/json"
+        "text/plain"
+        "text/html"
+      ]);
+  in {
+    associations.added = associations;
+    defaultApplications = associations;
   };
 }
