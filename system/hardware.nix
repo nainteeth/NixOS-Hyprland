@@ -29,6 +29,8 @@
   services.devmon.enable = true;         # Device monitoring
   services.tumbler.enable = true;        # Thumbnails
 
+  security.polkit.enable = true;
+
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
 	hardware.wooting.enable = true;
