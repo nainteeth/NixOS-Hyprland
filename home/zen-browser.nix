@@ -63,17 +63,6 @@
         };
       };
       
-      bookmarks = [
-        {
-          name = "Nix sites";
-          toolbar = true;
-          bookmarks = [
-            { name = "homepage"; url = "https://nixos.org/"; }
-            { name = "wiki"; tags = ["wiki" "nix"]; url = "https://wiki.nixos.org/"; }
-          ];
-        }
-      ];
-
       search = {
         force = true;
         default = "DuckDuckGo";
