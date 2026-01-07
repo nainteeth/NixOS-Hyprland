@@ -65,7 +65,7 @@
       
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "ddg";
         engines = {
           "My NixOS" = {
             urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
