@@ -31,5 +31,6 @@
     vulkan-validation-layers
     umu-launcher
     heroic
+    prismlauncher
   ];
 }

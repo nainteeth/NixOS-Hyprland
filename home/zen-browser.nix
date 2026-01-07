@@ -7,7 +7,6 @@
 
   programs.zen-browser = {
     enable = true;
-    # Ensure the package is explicitly set to avoid undefined variable errors
     package = inputs.zen-browser.packages.${pkgs.system}.default;
     
     profiles.default = {
