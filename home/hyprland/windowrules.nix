@@ -8,7 +8,7 @@
   "noborder,class:^(wofi)$"
 
   # opacity windowrule
-  "opacity 0.85 override,class:^(kitty)$"
+  "opacity 0.8 override,class:^(kitty)$"
   "opacity 0.85 override, class:^(thunar)$"
   "opacity 0.85 override, class:^(waypaper)$"
   "opacity 0.9 override, class:^(signal)$"
