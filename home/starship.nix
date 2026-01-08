@@ -6,21 +6,19 @@
     enableBashIntegration = true;
 
     settings = {
-      # Use a simple format: directory followed by the character module
-      format = "$directory$character";
-
+      format = "$directory\n$character";
       directory = {
-        # Shows the full path (e.g., ~/nixos/modules)
+        format = "[󰉋 $path]($style)[$read_only]($read_only_style) ";
         style = "bold blue";
         truncation_length = 0;
         truncate_to_repo = false;
       };
 
       character = {
-        success_symbol = "[> ](bold green)";
-        error_symbol = "[> ](bold red)";
+        success_symbol = "[󰄾 ](bold green)";
+        error_symbol = "[󰄾 ](bold red)";
       };
-
+      
       line_break.disabled = false;
       package.disabled = false;
       git_branch.disabled = false;
