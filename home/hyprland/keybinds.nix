@@ -26,8 +26,8 @@
   "${mainMod} SHIFT, J, movewindow, d"
 
   # Screenshot
-  ", Print, exec, ${config.home.homeDirectory}/bin/screenshot-menu"
-  "SHIFT, Print, exec, grimblast --notify copysave screen ${config.home.homeDirectory}/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+  #", Print, exec, ${config.home.homeDirectory}/bin/screenshot-menu"
+  #"SHIFT, Print, exec, grimblast --notify copysave screen ${config.home.homeDirectory}/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
   # Switch workspaces with mainMod + [0-9]
   "${mainMod}, 1, workspace, 1"
   "${mainMod}, 2, workspace, 2"
