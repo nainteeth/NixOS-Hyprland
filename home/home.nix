@@ -24,5 +24,6 @@
     ./spicetify.nix
     ./zen-browser.nix
     ./quickshell/quickshell.nix
+    ./starship.nix
   ];
 }
