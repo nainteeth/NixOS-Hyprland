@@ -19,6 +19,12 @@
   "${mainMod}, L, movefocus, r"
   "${mainMod}, K, movefocus, u"
   "${mainMod}, J, movefocus, d"
+
+  "${mainMod} SHIFT, H, movewindow, l"
+  "${mainMod} SHIFT, L, movewindow, r"
+  "${mainMod} SHIFT, K, movewindow, u"
+  "${mainMod} SHIFT, J, movewindow, d"
+
   # Screenshot
   ", Print, exec, ${config.home.homeDirectory}/bin/screenshot-menu"
   "SHIFT, Print, exec, grimblast --notify copysave screen ${config.home.homeDirectory}/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"

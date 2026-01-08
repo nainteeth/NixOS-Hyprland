@@ -5,7 +5,7 @@
     "${mainMod},SPACE,global,caelestia:launcher"
     "${mainMod} SHIFT, E, global, caelestia:session"
     "${mainMod} SHIFT, S, global, caelestia:showall"
-    "${mainMod} SHIFT, L, global, caelestia:lock"
+    "${mainMod} Ctrl, L, global, caelestia:lock"
     ", Print, global, caelestia:picker"
     "SHIFT, Print, global, caelestia:pickerFreeze"
     "${mainMod}, D, global, caelestia:dashboard"
