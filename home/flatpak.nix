@@ -14,16 +14,6 @@
       "sh.ppy.osu"
     ];
 
-    overrides = {
-      "com.discordapp.Discord" = {
-        Context.sockets = [ "wayland" "fallback-x11" ];
-        Command.append-args = [
-          "--enable-features=UseOzonePlatform"
-          "--ozone-platform=wayland"
-        ];
-      };
-    };
-
     remotes = [
       {
         name = "flathub";
