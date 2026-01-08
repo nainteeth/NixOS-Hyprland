@@ -1,37 +1,37 @@
 { config, terminal, fileManager, menu, browser, mainMod, ... }:
 
-[
-  # Launcher - Super key tap to open
-  "bindi, Super, Super_L, global, caelestia:launcher"
-  
-  # Launcher interrupt bindings (close launcher on other Super key actions)
-  "bindin, Super, catchall, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:272, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:273, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:274, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:275, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:276, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse:277, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse_up, global, caelestia:launcherInterrupt"
-  "bindin, Super, mouse_down, global, caelestia:launcherInterrupt"
-  
-  # Session menu (power options)
-  "bind, ${mainMod} SHIFT, E, global, caelestia:session"
-  
-  # Clear notifications
-  "bindl, ${mainMod} SHIFT, N, global, caelestia:clearNotifs"
-  
-  # Show all panels (dashboard, sidebar, etc.)
-  "bind, ${mainMod} SHIFT, S, global, caelestia:showall"
-  
-  # Lock screen
-  "bind, ${mainMod}, L, global, caelestia:lock"
+{
+  # Use 'bindi' attribute for the ignore-mods flag
+  bindi = [
+    "Super, Super_L, global, caelestia:launcher"
+  ];
 
-  # Screenshot with caelestia picker. RIP Wofi Screenshot Update.
-  "bind, , Print, global, caelestia:picker"
-  "bind, SHIFT, Print, global, caelestia:pickerFreeze"
-  
-  # Toggle sidebar/dashboard
-  "bind, ${mainMod}, D, global, caelestia:dashboard"
-  "bind, ${mainMod}, S, global, caelestia:sidebar"
-]
+  # Use 'bindin' attribute for non-consuming bindings
+  bindin = [
+    "Super, catchall, global, caelestia:launcherInterrupt"
+    "Super, mouse:272, global, caelestia:launcherInterrupt"
+    "Super, mouse:273, global, caelestia:launcherInterrupt"
+    "Super, mouse:274, global, caelestia:launcherInterrupt"
+    "Super, mouse:275, global, caelestia:launcherInterrupt"
+    "Super, mouse:276, global, caelestia:launcherInterrupt"
+    "Super, mouse:277, global, caelestia:launcherInterrupt"
+    "Super, mouse_up, global, caelestia:launcherInterrupt"
+    "Super, mouse_down, global, caelestia:launcherInterrupt"
+  ];
+
+  # Use 'bindl' for locked/lockscreen bindings
+  bindl = [
+    "${mainMod} SHIFT, N, global, caelestia:clearNotifs"
+  ];
+
+  # Standard 'bind' for everything else
+  bind = [
+    "${mainMod} SHIFT, E, global, caelestia:session"
+    "${mainMod} SHIFT, S, global, caelestia:showall"
+    "${mainMod}, L, global, caelestia:lock"
+    ", Print, global, caelestia:picker"
+    "SHIFT, Print, global, caelestia:pickerFreeze"
+    "${mainMod}, D, global, caelestia:dashboard"
+    "${mainMod}, S, global, caelestia:sidebar"
+  ];
+}

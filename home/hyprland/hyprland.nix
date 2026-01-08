@@ -30,13 +30,10 @@ in
       gestures = import ./gestures.nix;
       "$mainMod" = mainMod;
 
-      # Crazy import:
-      bind = (import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; })
-       ++ (import ./caelestia-shell.nix { inherit config terminal fileManager menu browser mainMod; });
-
+      bind = (import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; });
       windowrule = import ./windowrules.nix;
       exec-once = import ./autostart.nix;
-    };
+    } // (import ./caelestia-shell.nix { inherit config terminal fileManager menu browser mainMod; });
   };
 }
 # Mal hoffen dass es klappt
