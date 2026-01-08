@@ -7,7 +7,7 @@
   programs.hyprland.enable = true;
   
   # Hint electron apps to use wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Display Manager
   services.displayManager.sddm = {
@@ -33,7 +33,7 @@
   # XDG Desktop Portal for Wayland
   xdg.portal = { 
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
