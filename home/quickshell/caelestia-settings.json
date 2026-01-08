@@ -341,7 +341,7 @@
     "paths": {
         "mediaGif": "undefined",
         "sessionGif": "~/Bilder/gifs/nixos.gif",
-        "wallpaperDir": "~/Bilder/wallpaper"
+        "wallpaperDir": "~/Bilder/Wallpaper"
     },
     "services": {
         "audioIncrement": 0.1,
