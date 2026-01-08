@@ -89,7 +89,7 @@
         "enabled": true,
         "visualiser": {
             "blur": false,
-            "enabled": true,
+            "enabled": false,
             "autoHide": true,
             "rounding": 1,
             "spacing": 1
