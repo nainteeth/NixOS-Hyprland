@@ -340,7 +340,7 @@
     },
     "paths": {
         "mediaGif": "root:/assets/bongocat.gif",
-        "sessionGif": "undefined",
+        "sessionGif": "~/Bilder/gifs/nixos.gif",
         "wallpaperDir": "~/Bilder/wallpaper"
     },
     "services": {
