@@ -3,7 +3,7 @@
 {
   # Use 'bindi' attribute for the ignore-mods flag
   bindi = [
-    "Super, Super_L, global, caelestia:launcher"
+    "Super, SPACE, global, caelestia:launcher"
   ];
 
   # Use 'bindl' for locked/lockscreen bindings
@@ -15,7 +15,7 @@
   bind = [
     "${mainMod} SHIFT, E, global, caelestia:session"
     "${mainMod} SHIFT, S, global, caelestia:showall"
-    "${mainMod}, L, global, caelestia:lock"
+    "${mainMod} SHIFT, L, global, caelestia:lock"
     ", Print, global, caelestia:picker"
     "SHIFT, Print, global, caelestia:pickerFreeze"
     "${mainMod}, D, global, caelestia:dashboard"
