@@ -14,6 +14,22 @@
       "sh.ppy.osu"
     ];
 
+    overrides = {
+      "com.discordapp.Discord" = {
+        Context.filesystems = [
+          "xdg-run/pipewire-0"
+        ];
+        Environment.XDG_SESSION_TYPE = "wayland";
+        Context.sockets = [
+          "wayland"
+          "x11"
+          "pulseaudio"
+        ];
+        "Session Bus Policy" = {
+          "org.freedesktop.portal.Desktop" = "talk";
+        };
+      };
+    };
     remotes = [
       {
         name = "flathub";
