@@ -1,18 +1,19 @@
 [
   "float,class:^(org.pulseaudio.pavucontrol)$"
   "float,class:^(nm-connection-editor)$"
-  "float,class:^(spotify)$,title:^(Picture in picture)$"
+  "float,class:^(Spotify)$,title:^(Picture in picture)$"
 
   # wofi bugfix
-  "noshadow,class:^(wofi)$"
-  "noborder,class:^(wofi)$"
+  # "noshadow,class:^(wofi)$"
+  # "noborder,class:^(wofi)$"
 
   # opacity windowrule
   "opacity 0.65 override,class:^(kitty)$"
   "opacity 0.85 override, class:^(thunar)$"
   "opacity 0.85 override, class:^(waypaper)$"
   "opacity 0.9 override, class:^(signal)$"
-  "opacity 0.9 override, class:^(spotify)$"
+  "opacity 0.9 override, class:^(Spotify)$"
+  "opacity 0.9 override, class:^(com.discordapp.Discord)$"
 
   # Ignore maximize requests from apps.
   "suppressevent maximize, class:.*"
