@@ -6,4 +6,5 @@
   "GTK_THEME,Adwaita:dark"
   "QT_QPA_PLATFORM,wayland:xcb"
   "GDK_BACKEND,wayland,x11"
+  "ELECTRON_OZONE_PLATFORM_HINT,auto"
 ]
