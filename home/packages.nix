@@ -13,5 +13,6 @@
     hyprcursor
     hyprpaper
     zathura
+    jq # This is required for complex workspace keybind logic
   ];
 }
