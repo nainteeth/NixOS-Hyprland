@@ -21,6 +21,13 @@
     # a smooth criminal
   };
 
+  # Optimizing pipewire startup times
+  systemd.user.services = {
+  pipewire.wantedBy = [ "default.target" ];
+  pipewire-pulse.wantedBy = [ "default.target" ];
+  wireplumber.wantedBy = [ "default.target" ];
+  };
+
   # Printing
   services.printing.enable = true;
 
