@@ -8,6 +8,9 @@ let
   browser = "zen-beta";
   mainMod = "SUPER";
 
+  caelestia = import ./caelestia-shell.nix { inherit config terminal fileManager menu browser mainMod; };
+  standardBinds = import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; };
+
 in
 {
   wayland.windowManager.hyprland = {
@@ -29,11 +32,10 @@ in
       input = import ./input.nix;
       gestures = import ./gestures.nix;
       "$mainMod" = mainMod;
-
-      bind = (import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; });
+      bind = standardBinds ++ caelestia.bind;
       windowrule = import ./windowrules.nix;
       exec-once = import ./autostart.nix;
-    } // (import ./caelestia-shell.nix { inherit config terminal fileManager menu browser mainMod; });
+    };
   };
 }
 # Mal hoffen dass es klappt

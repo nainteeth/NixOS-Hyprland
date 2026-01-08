@@ -1,12 +1,6 @@
 { config, terminal, fileManager, menu, browser, mainMod, ... }:
 
 {
-  # Use 'bindl' for locked/lockscreen bindings
-  bindl = [
-    "${mainMod} SHIFT, N, global, caelestia:clearNotifs"
-  ];
-
-  # Standard 'bind' for everything else
   bind = [
     "${mainMod},SPACE,global,caelestia:launcher"
     "${mainMod} SHIFT, E, global, caelestia:session"
