@@ -4,23 +4,7 @@
   # Use 'bindi' attribute for the ignore-mods flag
   bindi = [
     "Super, Super_L, global, caelestia:launcher"
-    "Super, Super_L, submap, caelestia_submap"
   ];
-  extraConfig = ''
-    submap = caelestia_submap
-
-    # Launcher interrupt bindings (ONLY allowed here)
-    bindin = Super, catchall, global, caelestia:launcherInterrupt
-    bindin = Super, catchall, submap, reset
-    
-    bindin = Super, mouse:272, global, caelestia:launcherInterrupt
-    bindin = Super, mouse:272, submap, reset
-
-    # Standard keys to exit the submap
-    bind = , escape, submap, reset
-    
-    submap = reset
-  '';
 
   # Use 'bindl' for locked/lockscreen bindings
   bindl = [
