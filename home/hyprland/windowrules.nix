@@ -14,6 +14,7 @@
   "opacity 0.9 override, class:^(signal)$"
   "opacity 0.9 override, class:^(Spotify)$"
   "opacity 0.9 override, class:^(discord)$"
+  "opacity 0.85 override, class:^(org.keepassxc.KeePassXC)$"
 
   "workspace 4, class:^(discord)$"
   "workspace 5, class:^(Spotify)$"
