@@ -20,9 +20,14 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, spicetify-nix, zen-browser, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, spicetify-nix, zen-browser, caelestia-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -42,14 +47,14 @@
               # Add backup extension to handle existing files
               backupFileExtension = "backup";
               # Pass all inputs to home-manager
-              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser; };
+              extraSpecialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser caelestia-shell; };
             };
             # Set hostname for each system
             networking.hostName = hostname;
           }
         ] ++ extraModules;
         
-        specialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser; };
+        specialArgs = { inherit inputs nix-flatpak spicetify-nix zen-browser caelestia-shell; };
       };
     in
     {

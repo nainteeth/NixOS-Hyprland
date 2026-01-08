@@ -1,7 +1,30 @@
-{ pkgs, ... }:
+{ pkgs, caelestia-shell, inputs,  ... }:
 {
-  programs.quickshell = {
+  # programs.quickshell = {
+    # enable = true;
+  # };
+  imports = [
+    inputs.caelestia-shell.homeManagerModules.default
+  ];
+
+  programs.caelestia = {
     enable = true;
-    activeConfig = "./config";
+    systemd = {
+      enable = true;
+      target = "graphical-session.target";
+      environment = [];
+    };
+    settings = {
+      bar.status = {
+        showBattery = false;
+      };
+      paths.wallpaperDir = "~/Images";
+    };
+    cli = {
+      enable = true; # Also add caelestia-cli to path
+      settings = {
+        theme.enableGtk = false;
+      };
+    };
   };
 }
