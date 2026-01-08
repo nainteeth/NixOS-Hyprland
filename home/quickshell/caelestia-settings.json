@@ -84,7 +84,7 @@
     },
     "background": {
         "desktopClock": {
-            "enabled": false
+            "enabled": true
         },
         "enabled": true,
         "visualiser": {
@@ -97,8 +97,7 @@
     },
     "bar": {
         "clock": {
-            "showIcon": false, 
-            "showDate": true
+            "showIcon": false
         },
         "dragThreshold": 20,
         "entries": [
