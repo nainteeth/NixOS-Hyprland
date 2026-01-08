@@ -3,113 +3,31 @@
 {
   programs.starship = {
     enable = true;
-    # Enable Bash integration exclusively
     enableBashIntegration = true;
     enableZshIntegration = false;
     enableFishIntegration = false;
 
-    # Your translated configuration from starship.toml
     settings = {
-      line_break.disabled = true;
+      # Use a simple format: directory followed by the character module
+      format = "$directory$character";
 
-      # Language and Tool Symbols
-      aws.symbol = "  ";
-      buf.symbol = " ";
-      bun.symbol = " ";
-      c.symbol = " ";
-      cpp.symbol = " ";
-      cmake.symbol = " ";
-      conda.symbol = " ";
-      crystal.symbol = " ";
-      dart.symbol = " ";
-      deno.symbol = " ";
-      directory.read_only = " 󰌾";
-      docker_context.symbol = " ";
-      elixir.symbol = " ";
-      elm.symbol = " ";
-      fennel.symbol = " ";
-      fossil_branch.symbol = " ";
-      gcloud.symbol = "  ";
-      git_branch.symbol = " ";
-      git_commit.tag_symbol = "  ";
-      golang.symbol = " ";
-      gradle.symbol = " ";
-      guix_shell.symbol = " ";
-      haskell.symbol = " ";
-      haxe.symbol = " ";
-      hg_branch.symbol = " ";
-      hostname.ssh_symbol = " ";
-      java.symbol = " ";
-      julia.symbol = " ";
-      kotlin.symbol = " ";
-      lua.symbol = " ";
-      memory_usage.symbol = "󰍛 ";
-      meson.symbol = "󰔷 ";
-      nim.symbol = "󰆥 ";
-      nix_shell.symbol = " ";
-      nodejs.symbol = " ";
-      ocaml.symbol = " ";
-      package.symbol = "󰏗 ";
-      perl.symbol = " ";
-      php.symbol = " ";
-      pijul_channel.symbol = " ";
-      pixi.symbol = "󰏗 ";
-      python.symbol = " ";
-      rlang.symbol = "󰟔 ";
-      ruby.symbol = " ";
-      rust.symbol = "󱘗 ";
-      scala.symbol = " ";
-      swift.symbol = " ";
-      zig.symbol = " ";
-
-      # OS Symbols
-      os.symbols = {
-        Alpaquita = " ";
-        Alpine = " ";
-        AlmaLinux = " ";
-        Amazon = " ";
-        Android = " ";
-        Arch = " ";
-        Artix = " ";
-        CachyOS = " ";
-        CentOS = " ";
-        Debian = " ";
-        DragonFly = " ";
-        Emscripten = " ";
-        EndeavourOS = " ";
-        Fedora = " ";
-        FreeBSD = " ";
-        Garuda = "󰛓 ";
-        Gentoo = " ";
-        HardenedBSD = "󰞌 ";
-        Illumos = "󰈸 ";
-        Kali = " ";
-        Linux = " ";
-        Mabox = " ";
-        Macos = " ";
-        Manjaro = " ";
-        Mariner = " ";
-        MidnightBSD = " ";
-        Mint = " ";
-        NetBSD = " ";
-        NixOS = " ";
-        Nobara = " ";
-        OpenBSD = "󰈺 ";
-        openSUSE = " ";
-        OracleLinux = "󰌷 ";
-        Pop = " ";
-        Raspbian = " ";
-        Redhat = " ";
-        RedHatEnterprise = " ";
-        RockyLinux = " ";
-        Redox = "󰀘 ";
-        Solus = "󰠳 ";
-        SUSE = " ";
-        Ubuntu = " ";
-        Unknown = " ";
-        Void = " ";
-        Windows = "󰍲 ";
+      directory = {
+        # Shows the full path (e.g., ~/nixos/modules)
+        style = "bold blue";
+        truncation_length = 0;
+        truncate_to_repo = false;
       };
+
+      character = {
+        success_symbol = "[> ](bold green)";
+        error_symbol = "[> ](bold red)";
+      };
+
+      line_break.disabled = true;
+      package.disabled = true;
+      git_branch.disabled = true;
+      git_status.disabled = true;
+      nix_shell.disabled = true;
     };
   };
 }
