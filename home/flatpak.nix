@@ -14,17 +14,6 @@
       "sh.ppy.osu"
     ];
 
-    overrides = {
-      "com.discordapp.Discord" = {
-        Context = {
-          sockets = [ "wayland" "fallback-x11" ];
-        };
-        Environment = {
-          # ELECTRON_OZONE_PLATFORM_HINT = "auto";
-        };
-      };
-    };
-    
     remotes = [
       {
         name = "flathub";
