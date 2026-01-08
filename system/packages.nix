@@ -37,6 +37,7 @@
     networkmanagerapplet
     mako
     gnumake
+    alsa-utils
 
     # Applications
     keepassxc
