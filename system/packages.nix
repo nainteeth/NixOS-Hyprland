@@ -46,5 +46,6 @@
 
     # Theming
     catppuccin-sddm
+    bibata-cursors
   ];
 }

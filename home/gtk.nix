@@ -17,8 +17,8 @@
       package = pkgs.adwaita-icon-theme;
     };
     cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
     };
   };
 }
