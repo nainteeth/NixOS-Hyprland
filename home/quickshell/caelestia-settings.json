@@ -97,7 +97,8 @@
     },
     "bar": {
         "clock": {
-            "showIcon": false 
+            "showIcon": false, 
+            "showDate": true
         },
         "dragThreshold": 20,
         "entries": [
