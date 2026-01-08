@@ -4,8 +4,6 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
-    enableZshIntegration = false;
-    enableFishIntegration = false;
 
     settings = {
       # Use a simple format: directory followed by the character module
@@ -23,11 +21,11 @@
         error_symbol = "[> ](bold red)";
       };
 
-      line_break.disabled = true;
-      package.disabled = true;
-      git_branch.disabled = true;
-      git_status.disabled = true;
-      nix_shell.disabled = true;
+      line_break.disabled = false;
+      package.disabled = false;
+      git_branch.disabled = false;
+      git_status.disabled = false;
+      nix_shell.disabled = false;
     };
   };
 }
