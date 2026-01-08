@@ -16,5 +16,6 @@
     jq # This is required for complex workspace keybind logic
     socat
     playerctl
+    gimp
   ];
 }
