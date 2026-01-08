@@ -26,7 +26,7 @@
             "scale": 1
         },
         "transparency": {
-            "enabled": false,
+            "enabled": true,
             "base": 0.85,
             "layers": 0.4
         }
@@ -97,7 +97,7 @@
     },
     "bar": {
         "clock": {
-            "showIcon": true
+            "showIcon": false 
         },
         "dragThreshold": 20,
         "entries": [
@@ -115,11 +115,11 @@
             },
             {
                 "id": "activeWindow",
-                "enabled": true
+                "enabled": false 
             },
             {
                 "id": "spacer",
-                "enabled": true
+                "enabled": false 
             },
             {
                 "id": "tray",
@@ -306,13 +306,13 @@
             }
         ],
         "dragThreshold": 50,
-        "vimKeybinds": false,
+        "vimKeybinds": true,
         "enableDangerousActions": false,
         "maxShown": 7,
         "maxWallpapers": 9,
         "specialPrefix": "@",
         "useFuzzy": {
-            "apps": false,
+            "apps": true,
             "actions": false,
             "schemes": false,
             "variants": false,
