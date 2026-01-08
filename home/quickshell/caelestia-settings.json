@@ -339,7 +339,7 @@
         "hideDelay": 2000
     },
     "paths": {
-        "mediaGif": "root:/assets/bongocat.gif",
+        "mediaGif": "~/Bilder/gifs/matrix.gif",
         "sessionGif": "~/Bilder/gifs/nixos.gif",
         "wallpaperDir": "~/Bilder/wallpaper"
     },
