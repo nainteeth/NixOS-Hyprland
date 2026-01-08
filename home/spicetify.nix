@@ -14,8 +14,8 @@
       enable = true;
       
       # Theme configuration
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
+      #theme = spicePkgs.themes.catppuccin;
+      #colorScheme = "mocha";
       
       # Extensions
       enabledExtensions = with spicePkgs.extensions; [
