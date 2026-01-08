@@ -17,7 +17,7 @@
 
   "workspace 4, class:^(discord)$"
   "workspace 5, class:^(Spotify)$"
-  "workspace 10, class:^(steam_app_.*)$"
+  "workspace 10, class:^(steam)$"
   "workspace 10, class:^(lutris)$"
   "workspace 10, class:^(osu!)$"
 
