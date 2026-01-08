@@ -29,7 +29,11 @@ in
       input = import ./input.nix;
       gestures = import ./gestures.nix;
       "$mainMod" = mainMod;
-      bind = import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; };
+
+      # Crazy import:
+      bind = (import ./keybinds.nix { inherit config terminal fileManager menu browser mainMod; })
+       ++ (import ./caelestia-shell.nix { inherit config terminal fileManager menu browser mainMod; });
+
       windowrule = import ./windowrules.nix;
       exec-once = import ./autostart.nix;
     };

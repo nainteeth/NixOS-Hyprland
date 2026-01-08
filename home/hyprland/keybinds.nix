@@ -1,13 +1,14 @@
 { config, terminal, fileManager, menu, browser, mainMod }:
+# Every option that has been replaced by caelestia-shell has been marked with #c:
+# See ./caelestia-shell.nix instead.
 
 [
   "${mainMod}, RETURN, exec, ${terminal}"
   "${mainMod}, Q, killactive,"
-  "${mainMod} SHIFT, E, exit,"
+  #c: "${mainMod} SHIFT, E, exit,"
   "${mainMod}, E, exec, ${fileManager}"
   "${mainMod}, V, togglefloating,"
-  #"${mainMod}, SPACE, exec, ${menu}"
-  "${mainMod}, SPACE, global, caelestia:launcher,"
+  #c: "${mainMod}, SPACE, exec, ${menu}"
   "${mainMod}, P, pseudo," # dwindle
   #"${mainMod}, J, togglesplit," 
   #bind = $mainMod, J, togglesplit, # dwindle
