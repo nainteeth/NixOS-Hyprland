@@ -3,7 +3,7 @@
 {
   # Use 'bindi' attribute for the ignore-mods flag
   bindi = [
-    "Super, SPACE, global, caelestia:launcher"
+    "${mainMod}, SPACE, global, caelestia:launcher"
   ];
 
   # Use 'bindl' for locked/lockscreen bindings
