@@ -340,7 +340,7 @@
     },
     "paths": {
         "mediaGif": "root:/assets/bongocat.gif",
-        "sessionGif": "root:/assets/kurukuru.gif",
+        "sessionGif": "undefined",
         "wallpaperDir": "~/Bilder/wallpaper"
     },
     "services": {
