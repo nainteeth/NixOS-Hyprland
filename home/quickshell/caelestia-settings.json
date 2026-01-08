@@ -33,7 +33,7 @@
     },
     "general": {
         "apps": {
-            "terminal": ["foot"],
+            "terminal": ["kitty"],
             "audio": ["pavucontrol"],
             "playback": ["mpv"],
             "explorer": ["thunar"]
@@ -89,7 +89,7 @@
         "enabled": true,
         "visualiser": {
             "blur": false,
-            "enabled": false,
+            "enabled": true,
             "autoHide": true,
             "rounding": 1,
             "spacing": 1
