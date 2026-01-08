@@ -25,5 +25,6 @@
     ./zen-browser.nix
     ./quickshell/quickshell.nix
     ./starship.nix
+    ./bashrc.nix
   ];
 }
