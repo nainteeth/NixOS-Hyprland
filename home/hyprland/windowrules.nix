@@ -15,9 +15,10 @@
   "opacity 0.9 override, class:^(Spotify)$"
   "opacity 0.9 override, class:^(com.discordapp.Discord)$"
 
-  "workspace 5, title:^(Spotify)$"
-  "workspace 10, class:^(steam_app_.*)$"
-  "workspace 10, class:^(lutris)$"
+  "workspace 10, title:^(Spotify)$"
+  "workspace 5, class:^(steam_app_.*)$"
+  "workspace 5, class:^(lutris)$"
+
 
   # Ignore maximize requests from apps.
   "suppressevent maximize, class:.*"

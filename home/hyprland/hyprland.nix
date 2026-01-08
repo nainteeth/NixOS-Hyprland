@@ -34,6 +34,7 @@ in
       "$mainMod" = mainMod;
       bind = standardBinds ++ caelestia.bind;
       windowrule = import ./windowrules.nix;
+      workspaces = import ./workspaces.nix;
       exec-once = import ./autostart.nix;
     };
   };
