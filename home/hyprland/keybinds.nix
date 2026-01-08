@@ -6,7 +6,8 @@
   "${mainMod} SHIFT, E, exit,"
   "${mainMod}, E, exec, ${fileManager}"
   "${mainMod}, V, togglefloating,"
-  "${mainMod}, SPACE, exec, ${menu}"
+  #"${mainMod}, SPACE, exec, ${menu}"
+  "${mainMod}, SPACE, global, caelestia:launcher,"
   "${mainMod}, P, pseudo," # dwindle
   #"${mainMod}, J, togglesplit," 
   #bind = $mainMod, J, togglesplit, # dwindle

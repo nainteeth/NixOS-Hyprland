@@ -14,14 +14,9 @@
       target = "graphical-session.target";
       environment = [];
     };
-    settings = {
-      bar.status = {
-        showBattery = false;
-      };
-      paths.wallpaperDir = "~/Images";
-    };
+    settings = builtins.fromJSON (builtins.readFile ./caelestia-settings.json);
     cli = {
-      enable = true; # Also add caelestia-cli to path
+      enable = true; 
       settings = {
         theme.enableGtk = false;
       };
