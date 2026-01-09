@@ -6,8 +6,8 @@
     "${mainMod} SHIFT, E, global, caelestia:session"
     "${mainMod} SHIFT, S, global, caelestia:showall"
     "${mainMod} Ctrl, L, global, caelestia:lock"
-    ", Print, global, caelestia:screenshot"
-    "SHIFT, Print, global, caelestia:screenshot -f"
+    ", Print, exec, caelestia screenshot"
+    "SHIFT, Print, global, caelestia:screenshotFreeze"
     "${mainMod}, D, global, caelestia:dashboard"
     "${mainMod}, S, global, caelestia:sidebar"
   ];
