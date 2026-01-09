@@ -9,13 +9,13 @@
       format = "$directory\n$character";
       directory = {
         format = "[󰉋 $path]($style)[$read_only]($read_only_style) ";
-        style = "bold blue";
+        style = "bold white";
         truncation_length = 0;
         truncate_to_repo = false;
       };
 
       character = {
-        success_symbol = "[󰄾 ](bold green)";
+        success_symbol = "[󰄾 ](bold white)";
         error_symbol = "[󰄾 ](bold red)";
       };
       
