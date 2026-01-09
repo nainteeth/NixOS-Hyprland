@@ -26,8 +26,8 @@
   "${mainMod} SHIFT, J, movewindow, d"
 
   # Screenshot
-  ", Print, exec, ${config.home.homeDirectory}/bin/screenshot-menu"
-  "SHIFT, Print, exec, grimblast --notify copysave screen ${config.home.homeDirectory}/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+  # ", Print, exec, ${config.home.homeDirectory}/bin/screenshot-menu"
+  # "SHIFT, Print, exec, grimblast --notify copysave screen ${config.home.homeDirectory}/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
 
   # Context-aware workspace switching (1-5 on active monitor)
   "${mainMod}, 1, exec, hyprctl dispatch workspace $(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | if .name == \"DP-1\" then 1 else 6 end')"
