@@ -17,5 +17,7 @@
     socat
     playerctl
     gimp
+    cava
+    cmatrix
   ];
 }
