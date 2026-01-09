@@ -9,7 +9,7 @@
 
   # opacity windowrule
   "opacity 0.65 override,class:^(kitty)$"
-  "opacity 0.85 override, class:^(thunar)$"
+  "opacity 0.7 override, class:^(Thunar)$"
   "opacity 0.85 override, class:^(waypaper)$"
   "opacity 0.9 override, class:^(signal)$"
   "opacity 0.9 override, class:^(Spotify)$"
