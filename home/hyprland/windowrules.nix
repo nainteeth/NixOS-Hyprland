@@ -15,7 +15,7 @@
   "opacity 0.7 override, class:^(waypaper)$"
   "opacity 0.7 override, class:^(Signal)$"
   "opacity 0.7 override, class:^(net.lutris.Lutris)$"
-  "opacity 0.9 override, class:^(Spotify)$"
+  "opacity 0.7 override, class:^(Spotify)$"
   "opacity 0.7 override, class:^(discord)$"
   "opacity 0.7 override, class:^(org.keepassxc.KeePassXC)$"
   "opacity 1 override, class:^(zen-beta)$"
