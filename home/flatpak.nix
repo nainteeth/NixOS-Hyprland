@@ -12,6 +12,7 @@
     packages = [
       "com.discordapp.Discord"
       "sh.ppy.osu"
+      "io.mrarm.mcpelauncher"
     ];
 
     overrides = {
