@@ -14,6 +14,7 @@
       "sh.ppy.osu"
       "io.mrarm.mcpelauncher"
       "io.github.Foldex.AdwSteamGtk"
+      "com.bambulab.BambuStudio"
     ];
 
     overrides = {
