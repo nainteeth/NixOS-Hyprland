@@ -13,7 +13,7 @@
   animation = [
     "global, 1, 6, fluentDecel"
     "workspaces, 1, 6, fluentDecel, slidevert"
-    "windowsMove, 1, 2.6, overshoot"
+    "windowsMove, 1, 3, overshoot"
     "windowsIn, 1, 8, fluentDecel, popin 80%"
     "windowsOut, 1, 12, fluentDecel, popin 80%"
   ];
