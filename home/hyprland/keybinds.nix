@@ -48,14 +48,16 @@
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
 
   # Scroll through existing workspaces with mainMod + scroll
-  "${mainMod}, mouse_down, workspace, e+1"
-  "${mainMod}, mouse_up, workspace, e-1"
+  "${mainMod}, mouse_down, workspace, +1"
+  "${mainMod}, mouse_up, workspace, -1"
+  "${mainMod} CTRL, j, workspace, +1"
+  "${mainMod} CTRL, k, workspace, -1"
 
   # Move/resize windows with mainMod + LMB/RMB and dragging
-  "${mainMod}, mouse:272, mouse, movewindow" # Note: bindm needs the explicit "bindm =" prefix in Nix
+  "${mainMod}, mouse:272, mouse, movewindow" 
   "${mainMod}, mouse:273, mouse, resizewindow"
 
-  # Laptop multimedia keys for volume and LCD brightness
+  # Laptop multiimedia keys for volume and LCD brightness
   ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
   ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
   ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
