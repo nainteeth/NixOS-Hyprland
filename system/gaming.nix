@@ -31,5 +31,6 @@
     umu-launcher
     heroic
     prismlauncher
+    protonup-qt
   ];
 }
