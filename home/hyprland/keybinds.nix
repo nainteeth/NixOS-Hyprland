@@ -48,10 +48,14 @@
   "${mainMod} SHIFT, S, movetoworkspace, special:magic"
 
   # Scroll through existing workspaces with mainMod + scroll
-  "${mainMod}, mouse_down, workspace, +1"
-  "${mainMod}, mouse_up, workspace, -1"
+  "${mainMod}, mouse_down, workspace, -1"
+  "${mainMod} SHIFT, mouse_down, movetoworkspace, -1"
+  "${mainMod}, mouse_up, workspace, +1"
+  "${mainMod} SHIFT, mouse_up, movetoworkspace, +1"
   "${mainMod} CTRL, j, workspace, +1"
+  "${mainMod} CTRl SHIFT, j, movetoworkspace, +1"
   "${mainMod} CTRL, k, workspace, -1"
+  "${mainMod} CTRL SHIFT, k, movetoworkspace, -1"
 
   # Move/resize windows with mainMod + LMB/RMB and dragging
   "${mainMod}, mouse:272, mouse, movewindow" 
