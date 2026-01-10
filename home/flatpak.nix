@@ -10,6 +10,7 @@
     uninstallUnmanaged = true;
     
     packages = [
+      #{ flatpakref = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak"; sha256="0rxbh7d9b6dap00w2sfvl0ibkhdk7mslka4l7sb2a2nh33pry4wj";}
       "com.discordapp.Discord"
       "sh.ppy.osu"
       "io.mrarm.mcpelauncher"
