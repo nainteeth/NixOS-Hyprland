@@ -5,6 +5,7 @@
   services.udisks2.enable = true;        # Disk management
   services.devmon.enable = true;         # Device monitoring
   services.tumbler.enable = true;        # Thumbnails
+  services.postgresql.enable = true; 
 
   security.polkit = {
   enable = true;

@@ -39,6 +39,7 @@
     gnumake
     alsa-utils
 
+    postgresql
     # Applications
     keepassxc
     signal-desktop

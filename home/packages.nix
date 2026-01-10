@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     jetbrains-mono
-    postgresql
     emacs
     nerd-fonts.jetbrains-mono
     adw-gtk3
