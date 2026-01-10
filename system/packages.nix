@@ -38,8 +38,10 @@
     mako
     gnumake
     alsa-utils
+    docker
 
     postgresql
+
     # Applications
     keepassxc
     signal-desktop
