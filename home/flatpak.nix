@@ -7,7 +7,7 @@
 
   services.flatpak = {
     enable = true;
-    uninstallUnmanaged = true;
+    uninstallUnmanaged = false; # Only manages user packages 
     
     packages = [
       "com.discordapp.Discord"
@@ -15,7 +15,6 @@
       "io.mrarm.mcpelauncher"
       "io.github.Foldex.AdwSteamGtk"
       "com.bambulab.BambuStudio"
-      "hytale-origin:com.hytale.Launcher"
     ];
 
     overrides = {
@@ -38,10 +37,6 @@
       {
         name = "flathub";
         location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      }
-      {
-        name = "hytale-origin";
-        location = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
       }
     ];
   };
