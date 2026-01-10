@@ -35,7 +35,6 @@
     pavucontrol
     adwaita-icon-theme
     networkmanagerapplet
-    mako
     gnumake
     alsa-utils
     docker
