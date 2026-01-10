@@ -33,14 +33,23 @@
   # XDG Desktop Portal for Wayland
   xdg.portal = { 
     enable = true;
-    # wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
+    config = {
+      common.default = "gtk";
+      hyprland = {
+        default = [ "gtk" "hyprland" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+      };
+  };
+  xdgOpenUsePortal = true;
+
   };
   environment.sessionVariables = {
-    BROWSER = "firefox";
+    BROWSER = "zen-browser";
   };
 
   # Security

@@ -1,4 +1,4 @@
-{ inputs, nix-flatpak, ... }:
+{ inputs, pkgs, nix-flatpak, ... }:
 
 {
   imports = [

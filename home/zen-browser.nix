@@ -5,6 +5,17 @@
     inputs.zen-browser.homeModules.default
   ];
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "zen-browser.desktop";
+      "x-scheme-handler/http" = "zen-browser.desktop";
+      "x-scheme-handler/https" = "zen-browser.desktop";
+      "x-scheme-handler/about" = "zen-browser.desktop";
+      "x-scheme-handler/unknown" = "zen-browser.desktop";
+    };
+  };
+
   programs.zen-browser = {
     enable = true;
     package = inputs.zen-browser.packages.${pkgs.system}.default;
