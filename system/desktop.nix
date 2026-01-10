@@ -39,6 +39,9 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+  environment.sessionVariables = {
+    BROWSER = "firefox";
+  };
 
   # Security
   security.polkit.enable = true;
