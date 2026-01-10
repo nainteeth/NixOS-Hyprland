@@ -2,7 +2,7 @@
 
 {
   programs.starship = {
-    enable = true;
+    enable = false;
     enableBashIntegration = true;
 
     settings = {
