@@ -6,6 +6,7 @@
   services.devmon.enable = true;         # Device monitoring
   services.tumbler.enable = true;        # Thumbnails
   services.postgresql.enable = true; 
+  virtualisation.docker.enable = true;
 
   security.polkit = {
   enable = true;
