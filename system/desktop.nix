@@ -4,7 +4,10 @@
   services.xserver.enable = true; # MACH DAS NICHT AUS
 
   # Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;  # This is critical for portal functionality
+  };
   
   # Hint electron apps to use wayland
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -33,21 +36,17 @@
   # XDG Desktop Portal for Wayland
   xdg.portal = { 
     enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = "gtk";
-      hyprland = {
-        default = [ "gtk" "hyprland" ];
-        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
-      };
+      common.default = "*";
+      hyprland.default = [ "hyprland" "gtk" ];
+    };
   };
-  xdgOpenUsePortal = true;
 
-  };
   environment.sessionVariables = {
     BROWSER = "zen-browser";
   };
